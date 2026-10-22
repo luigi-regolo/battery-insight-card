@@ -84,7 +84,7 @@
   });
   const icon = (name,cls='') => `<ha-icon class="bs-icon ${cls}" icon="${esc(iconName(name))}" aria-hidden="true"></ha-icon>`;
   const CARD_CSS=`
-    :host{display:block;min-width:0;font-family:var(--ha-font-family-body,Roboto,Arial,sans-serif);color:var(--bs-text);font-size:14px}
+    :host{display:block;min-width:0;font-family:var(--ha-font-family-body,var(--paper-font-body1_-_font-family,Roboto,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif));color:var(--bs-text);font-size:14px}
     *,*:before,*:after{box-sizing:border-box}
     :host([data-theme=light]){--bs-bg:#fafbf9;--bs-tile:#f0f2ef;--bs-circle:#fff;--bs-line:#e0e5df;--bs-text:#18221c;--bs-muted:#56675c;--bs-accent:#0a7156;--bs-red:#ae4742;--bs-amber:#ad701c}
     :host([data-theme=dark]){--bs-bg:#101211;--bs-tile:#191c1a;--bs-circle:#282b29;--bs-line:#2b302c;--bs-text:#f5f7f4;--bs-muted:#bbc5bd;--bs-accent:#45b594;--bs-red:#f17878;--bs-amber:#efb45f}
@@ -116,20 +116,20 @@
     .bs-tiletext{flex:1;min-width:0}.bs-tile .bs-name{font-size:13px;overflow-wrap:anywhere}.bs-tile .bs-sub{font-size:11.5px;overflow-wrap:anywhere}
     /* Security Panel geometry, compact visual states as in approved category grid. */
     .bs-grid{gap:10px}
-    .bs-tile{min-height:128px;padding:12px 12px 10px;border-radius:18px;gap:7px}
+    .bs-tile{min-height:156px;padding:11px 12px 12px;border-radius:24px;gap:8px}
     .bs-tilehead{justify-content:space-between;min-height:24px;align-items:center}
     .bs-tile .bs-icon{width:21px;height:21px;--mdc-icon-size:21px}
-    .bs-tile-symbol{display:inline-flex;align-items:center;color:var(--bs-text)}
-    .bs-tile-state{display:inline-flex;align-items:center;color:var(--bs-muted)}
+    .bs-tile-symbol{display:inline-flex;align-items:center;justify-content:center;width:43px;height:43px;border-radius:50%;background:var(--bs-circle);color:var(--bs-text);flex:none}
+    .bs-tile-state{display:inline-flex;align-items:center;justify-content:center;min-height:30px;min-width:30px;color:var(--bs-muted)}
     .bs-tile-state.normal{color:var(--bs-accent)}
     .bs-tile-state.low{color:var(--bs-amber)}
     .bs-tile-state.critical{color:var(--bs-red)}
-    .bs-tile-caption{min-width:0;margin-top:1px}
-    .bs-tile .bs-name{font-size:13px;font-weight:650;line-height:1.35}
-    .bs-tile .bs-sub{font-size:11px;line-height:1.4;margin-top:3px;color:var(--bs-muted)}
+    .bs-tile-caption{display:flex;flex-direction:column;align-items:flex-start;min-width:0;gap:5px;margin-top:2px;line-height:1.35}
+    .bs-tile .bs-name{display:block;width:100%;font-size:13px;font-weight:650;line-height:1.35;overflow-wrap:anywhere}
+    .bs-tile .bs-sub{display:block;width:100%;font-size:12px;line-height:1.4;margin:0;color:var(--bs-muted);overflow-wrap:anywhere}
     .bs-tile .bs-sub.low{color:var(--bs-amber)}
     .bs-tile .bs-sub.critical{color:var(--bs-red)}
-    .bs-min{font-size:10.5px;color:var(--bs-muted);margin-top:auto}
+    .bs-min{font-size:11px;line-height:1.4;color:var(--bs-muted);margin-top:auto;padding-top:8px}
     .bs-min strong{font-size:11.5px;font-weight:650;color:var(--bs-text);font-variant-numeric:tabular-nums}
     .bs-min.low strong{color:var(--bs-amber)}
     .bs-min.critical strong{color:var(--bs-red)}
@@ -137,29 +137,29 @@
     .bs-mini-fill{height:100%;background:var(--bs-accent);border-radius:50px}
     .bs-mini-fill.low{background:var(--bs-amber)}
     .bs-mini-fill.critical{background:var(--bs-red)}
-    @container (max-width:360px){.bs-tile{padding:10px 9px;min-height:124px}.bs-tile .bs-name{font-size:12.5px}}
+    @container (max-width:360px){.bs-tile{padding:12px;min-height:148px}.bs-tile .bs-name{font-size:13px}}
     .bs-chevron{color:var(--bs-muted)}.bs-pill{margin-top:auto;display:inline-flex;align-items:center;gap:5px;width:fit-content;max-width:100%;min-width:0;padding:5px 9px;font-size:11px;font-weight:650;border-radius:999px;background:var(--bs-circle);color:var(--bs-text)}
     .bs-pill .bs-icon{height:14px;width:14px;--mdc-icon-size:14px}.bs-pill.low{color:var(--bs-amber)}.bs-pill.critical{color:var(--bs-red)}
-    .bs-details{display:flex;align-items:center;justify-content:space-between;width:100%;gap:12px;padding:10px 13px;margin-top:12px;border:0;border-radius:17px;background:#0a7156;color:#fff;text-align:left;font-weight:650}
+    .bs-details{display:inline-flex;align-items:center;justify-content:center;width:auto;max-width:100%;gap:12px;min-height:40px;padding:9px 13px;margin-top:14px;border:1px solid var(--bs-accent);border-radius:999px;background:var(--bs-tile);color:var(--bs-text);text-align:center;font-weight:650;font-size:12px}.bs-details[aria-expanded="true"],.bs-details:hover{background:var(--bs-accent);color:#fff}.bs-details-label{display:inline-flex;align-items:center;gap:8px;min-width:0}.bs-details-label .bs-icon{display:inline-flex;align-items:center;justify-content:center}
     .bs-details .bs-icon{width:17px;height:17px;--mdc-icon-size:17px}
     .bs-empty{padding:16px;color:var(--bs-muted);font-size:12px;text-align:center}
-    .bs-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.55);display:flex;align-items:center;justify-content:center;padding:20px;z-index:9999}
-    .bs-dialog{background:var(--bs-bg);color:var(--bs-text);border:1px solid var(--bs-line);border-radius:24px;display:flex;flex-direction:column;width:min(520px,100%);max-height:min(82dvh,820px);box-shadow:0 24px 80px rgba(0,0,0,.22);overflow:hidden;min-width:0}
-    .bs-dialog-head{flex:none;display:flex;align-items:center;justify-content:space-between;gap:10px;background:var(--bs-bg);border-bottom:1px solid var(--bs-line);padding:17px 18px;z-index:2}
-    .bs-dialog-head strong{font-size:17px;line-height:1.25}.bs-close{display:grid;place-items:center;border:0;border-radius:50%;background:var(--bs-tile);width:34px;height:34px;flex:none}
-    .bs-dialog-body{overflow-y:auto;overscroll-behavior:contain;padding:16px 18px 20px;min-height:0}
-    .bs-stats{display:flex;flex-wrap:wrap;gap:7px;margin:0 0 15px}.bs-stat{border:1px solid var(--bs-line);border-radius:13px;padding:8px 11px;background:var(--bs-tile);font-size:12px}
-    .bs-stat b{font-size:15px}.bs-filters{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:14px}
-    .bs-filter{border:1px solid var(--bs-line);border-radius:999px;padding:7px 12px;background:var(--bs-tile);font-size:12px}.bs-filter.selected{background:var(--bs-accent);color:var(--bs-bg);border-color:var(--bs-accent)}
-    .bs-entry{padding:12px 0;border-bottom:1px solid var(--bs-line)}.bs-entry:last-child{border-bottom:0}
-    .bs-entrytop{display:flex;align-items:center;justify-content:space-between;gap:12px}.bs-entryname{font-size:13px;line-height:1.35;font-weight:650;min-width:0;overflow-wrap:anywhere}
+    .bs-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.60);display:flex;align-items:center;justify-content:center;padding:max(18px,env(safe-area-inset-top)) 18px max(18px,env(safe-area-inset-bottom));z-index:9999}
+    .bs-dialog{background:var(--bs-bg);color:var(--bs-text);border:1px solid var(--bs-line);border-radius:26px;display:flex;flex-direction:column;width:min(470px,100%);max-height:min(82dvh,760px);box-shadow:0 24px 80px rgba(0,0,0,.28);overflow:hidden;min-width:0}
+    .bs-dialog-head{flex:none;display:flex;align-items:center;justify-content:space-between;gap:12px;background:var(--bs-bg);padding:21px 24px 10px;z-index:2;min-height:76px}
+    .bs-dialog-head strong{display:block;font-size:17px;font-weight:650;line-height:1.3}.bs-dialog-titles{min-width:0;flex:1}.bs-dialog-titles span{display:block;margin-top:4px;font-size:12px;color:var(--bs-muted)}.bs-close{display:flex;align-items:center;justify-content:center;border:0;border-radius:50%;background:var(--bs-tile);width:40px;height:40px;flex:none;line-height:0}.bs-close .bs-icon{width:19px;height:19px;--mdc-icon-size:19px}
+    .bs-dialog-body{overflow-y:auto;overscroll-behavior:contain;padding:16px 24px 24px;min-height:0;-webkit-overflow-scrolling:touch}
+    .bs-stats{display:flex;flex-wrap:wrap;gap:9px;margin:0 0 18px}.bs-stat{border:1px solid var(--bs-line);border-radius:17px;padding:10px 13px;background:var(--bs-tile);font-size:12px;white-space:nowrap}
+    .bs-stat b{font-size:15px;font-weight:750}.bs-filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:21px}.bs-popup-heading{font-size:13px;font-weight:650;line-height:1.4;margin:7px 0 12px}
+    .bs-filter{border:1px solid var(--bs-line);border-radius:999px;padding:10px 15px;min-height:39px;background:var(--bs-tile);font-size:12px;line-height:1.2}.bs-filter.selected{background:var(--bs-accent);color:#fff;border-color:var(--bs-accent)}.bs-filter:focus-visible{outline:2px solid var(--bs-accent);outline-offset:2px}
+    .bs-entry{padding:13px 14px;background:var(--bs-tile);border:1px solid var(--bs-line);border-radius:17px;margin-bottom:9px}.bs-entry:last-child{margin-bottom:0}
+    .bs-entrytop{display:flex;align-items:center;justify-content:space-between;gap:12px}.bs-entryidentity{display:flex;align-items:center;gap:9px;min-width:0;flex:1}.bs-entryidentity .bs-icon{width:21px;height:21px;--mdc-icon-size:21px}.bs-entryname{font-size:13px;line-height:1.35;font-weight:650;min-width:0;overflow-wrap:anywhere}.bs-entry-status{margin:6px 0 0 30px;color:var(--bs-muted);font-size:11px}.bs-entry-status.low{color:var(--bs-amber)}.bs-entry-status.critical{color:var(--bs-red)}
     .bs-pct{font-weight:750;white-space:nowrap;font-size:14px}.bs-pct.low{color:var(--bs-amber)}.bs-pct.critical{color:var(--bs-red)}.bs-pct.unavailable{color:var(--bs-muted)}
     .bs-track{background:var(--bs-line);height:6px;border-radius:999px;overflow:hidden;margin-top:9px}.bs-fill{height:100%;background:var(--bs-accent);border-radius:999px}.bs-fill.low{background:var(--bs-amber)}.bs-fill.critical{background:var(--bs-red)}
     .bs-entityid{font-size:10px;color:var(--bs-muted);margin-top:3px;overflow-wrap:anywhere}
-    @container (max-width:290px){.bs-grid{grid-template-columns:1fr}.bs-tile{min-height:83px}}
+    @container (max-width:390px){.bs-grid{grid-template-columns:1fr}.bs-tile{min-height:140px}}
     @container (max-width:360px){.bs-shell{padding:13px}.bs-title{font-size:23px}}
     :host{container-type:inline-size}
-    @media(max-width:440px){.bs-shell{padding:13px}.bs-backdrop{padding:10px}.bs-dialog{max-height:calc(100dvh - 24px)}.bs-dialog-body{padding:13px}.bs-dialog-head{padding:13px}}
+    @media(max-width:440px){.bs-shell{padding:13px}.bs-backdrop{padding:10px}.bs-dialog{max-height:calc(100dvh - 24px)}.bs-dialog-body{padding:14px 16px 20px}.bs-dialog-head{padding:17px 16px 8px;min-height:67px}}
     @media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;animation:none!important;transition:none!important}}
   `;
   class BatteryInsightCard extends HTMLElement {
@@ -191,16 +191,17 @@
     _popup(sections){
       const selected=this._dialog==='__all__'?sections:sections.filter(s=>s.id===this._dialog);
       if(!selected.length)return '';
-      const items=selected.flatMap(s=>s.items),stats=summary(items,this._cfg),title=this._dialog==='__all__'?'Dettagli e stato':selected[0].name;
+      const items=selected.flatMap(s=>s.items),stats=summary(items,this._cfg),title='Dettagli batterie',subtitle=this._dialog==='__all__'?'Tutti i dispositivi':selected[0].name;
       const entries=sortItems(items,this._cfg).filter(b=>this._filter==='all'||this._filter==='unavailable'&&classify(b,this._cfg)==='unavailable'||this._filter==='low'&&['low','critical'].includes(classify(b,this._cfg)));
       const filters=[['all','Tutti'],['low','In allerta'],['unavailable','Non disponibili']];
       return `<div class="bs-backdrop" data-backdrop="1"><div class="bs-dialog" role="dialog" aria-modal="true" aria-label="${esc(title)}">
-        <div class="bs-dialog-head"><strong>${esc(title)}</strong><button class="bs-close" type="button" data-close="1" aria-label="Chiudi">${icon('mdi:close')}</button></div>
-        <div class="bs-dialog-body"><div class="bs-stats"><div class="bs-stat"><b>${stats.total}</b> monitorati</div><div class="bs-stat"><b>${stats.low}</b> in allerta</div><div class="bs-stat"><b>${stats.unavailable}</b> non disponibili</div></div>
-        <div class="bs-filters">${filters.map(([key,label])=>`<button type="button" class="bs-filter ${this._filter===key?'selected':''}" data-filter="${key}">${label}</button>`).join('')}</div>
+        <div class="bs-dialog-head"><div class="bs-dialog-titles"><strong>${esc(title)}</strong><span>${esc(subtitle)}</span></div><button class="bs-close" type="button" data-close="1" aria-label="Chiudi">${icon('mdi:close')}</button></div>
+        <div class="bs-dialog-body"><div class="bs-popup-heading">Riepilogo dispositivi</div><div class="bs-stats"><div class="bs-stat"><b>${stats.total}</b> monitorati</div><div class="bs-stat"><b>${stats.low}</b> in allerta</div><div class="bs-stat"><b>${stats.unavailable}</b> non disponibili</div></div>
+        <div class="bs-popup-heading">Filtra dispositivi</div><div class="bs-filters">${filters.map(([key,label])=>`<button type="button" class="bs-filter ${this._filter===key?'selected':''}" data-filter="${key}" aria-pressed="${this._filter===key}">${label}</button>`).join('')}</div><div class="bs-popup-heading">Dispositivi</div>
         ${entries.length?entries.map(b=>{
           const status=classify(b,this._cfg);const txt=b.kind==='percentage'?`${Number(b.value.toFixed(1))}%`:b.kind==='low'?'Bassa':b.kind==='normal'?'OK':'N/D';
-          return `<div class="bs-entry"><div class="bs-entrytop"><div class="bs-entryname">${esc(b.name)}</div><span class="bs-pct ${status}">${esc(txt)}</span></div>
+          const detail=status==='critical'?'Batteria critica':status==='low'?'Batteria scarica':status==='normal'?'Batteria regolare':'Stato non disponibile';
+          return `<div class="bs-entry"><div class="bs-entrytop"><div class="bs-entryidentity">${icon('mdi:battery')}<span class="bs-entryname">${esc(b.name)}</span></div><span class="bs-pct ${status}">${esc(txt)}</span></div><div class="bs-entry-status ${status}">${esc(detail)}</div>
             ${b.value!==null?`<div class="bs-track"><div class="bs-fill ${status}" style="width:${b.value}%"></div></div>`:''}
             </div>`;
         }).join(''):'<div class="bs-empty">Nessun dispositivo per questo filtro</div>'}</div></div></div>`;
@@ -223,7 +224,7 @@
         <header class="bs-header"><div class="bs-eyebrow">${esc(this._cfg.eyebrow)}</div><div class="bs-title">${esc(this._cfg.title)}<b>.</b></div></header>
         <section class="bs-metrics" aria-label="Riepilogo batterie">
           <div class="bs-metric"><div class="bs-metric-label">Media batterie casa</div><div class="bs-metric-value">${mean===null?'—':mean+'%'}</div><div class="bs-metric-track"><div class="bs-metric-fill" style="width:${mean??0}%"></div></div><div class="bs-metric-detail">Esclusi dispositivi personali · ${percentages.length} sensori</div></div>
-          <div class="bs-metric"><div class="bs-metric-label">Dispositivi in allerta</div><div class="bs-metric-value ${stats.low?'low':''}">${stats.low}</div><div class="bs-metric-detail">Soglia ≤${this._cfg.low_threshold}%${this._cfg.show_unavailable&&stats.unavailable?` · ${stats.unavailable} N/D`:''}</div></div>
+          <div class="bs-metric"><div class="bs-metric-label">Dispositivi in allerta</div><div class="bs-metric-value ${stats.low?'low':''}">${stats.low}</div><div class="bs-metric-detail">Avviso batteria: ${this._cfg.low_threshold}%${this._cfg.show_unavailable&&stats.unavailable?` · ${stats.unavailable} N/D`:''}</div></div>
         </section>
         <div class="bs-heading">Sezioni dispositivi · ${stats.total} monitorati</div>
         ${shown.length?`<div class="bs-grid">${shown.map(s=>{
@@ -233,16 +234,18 @@
           const minimum=numeric.length?Math.min(...numeric.map(item=>item.value)):null;
           const minState=minimum===null?'':minimum<=this._cfg.critical_threshold?'critical':minimum<=this._cfg.low_threshold?'low':'normal';
           const stateIcon=level==='critical'?'mdi:alert-circle-outline':level==='low'?'mdi:alert-outline':level==='normal'?'mdi:check':level==='unavailable'?'mdi:help-circle-outline':'mdi:minus';
-          const short=st.low?`${st.total} dispositivi · ${st.low} in allerta`:st.unavailable?`${st.total} dispositivi · ${st.unavailable} N/D`:`${st.total} dispositiv${st.total===1?'o':'i'}`;
+          const countText=`${st.total} dispositiv${st.total===1?'o':'i'}`;
+          const alertText=st.low?`${st.low} in allerta`:st.unavailable?`${st.unavailable} non disponibil${st.unavailable===1?'e':'i'}`:'';
+          const short=`${countText}${alertText?' · '+alertText:''}`;
           const statusName=level==='normal'?'Batterie regolari':level==='low'?'Batterie in allerta':level==='critical'?'Batterie critiche':level==='unavailable'?'Stati non disponibili':'Nessun dispositivo';
           return `<button class="bs-tile" type="button" data-category="${esc(s.id)}" aria-label="${esc(s.name)}: ${esc(short)}. ${esc(statusName)}. Apri dettagli.">
             <div class="bs-tilehead"><span class="bs-tile-symbol">${icon(s.icon)}</span><span class="bs-tile-state ${level}" title="${esc(statusName)}">${icon(stateIcon)}</span></div>
-            <div class="bs-tile-caption"><span class="bs-name">${esc(s.name)}</span><span class="bs-sub ${st.critical?'critical':st.low?'low':''}">${esc(short)}</span></div>
+            <div class="bs-tile-caption"><span class="bs-name">${esc(s.name)}</span><span class="bs-sub">${esc(countText)}</span>${alertText?`<span class="bs-sub ${st.critical?'critical':st.low?'low':''}">${esc(alertText)}</span>`:''}</div>
             <div class="bs-min ${minState}">${minimum===null?'Percentuale minima non disponibile':`Batteria minima: <strong>${Number(minimum.toFixed(1))}%</strong>`}
               ${minimum!==null?`<div class="bs-mini-track"><div class="bs-mini-fill ${minState}" style="width:${minimum}%"></div></div>`:''}</div>
             </button>`;
         }).join('')}</div>`:'<div class="bs-empty">Nessuna sezione visibile: usa l’editor della card per aggiungerla.</div>'}
-        <button class="bs-details" type="button" data-details="1"><span>${icon('mdi:chart-donut')} Dettagli e stato</span>${icon('mdi:chevron-right')}</button>
+        <button class="bs-details" type="button" data-details="1" aria-haspopup="dialog" aria-expanded="${this._dialog==='__all__'}"><span class="bs-details-label">${icon('mdi:battery')} Dettagli batterie</span>${icon('mdi:chevron-right')}</button>
       </div>${this._dialog?this._popup(sections):''}`;
       const dialogBody=this.shadowRoot.querySelector('.bs-dialog-body');if(dialogBody)dialogBody.scrollTop=previousScroll;
     }
@@ -251,8 +254,8 @@
     :host{display:block;color:var(--primary-text-color,#18221c);font-family:var(--ha-font-family-body,Roboto,Arial,sans-serif);font-size:var(--ha-font-size-m,14px)}
     *,*:before,*:after{box-sizing:border-box}.bs-editor{display:block}.bs-tabs{display:flex;gap:5px;overflow-x:auto;padding-bottom:14px;border-bottom:1px solid var(--divider-color,#dfe5df)}
     .bs-tab{border:0;background:none;color:var(--secondary-text-color,#536359);border-radius:13px;padding:10px 13px;white-space:nowrap;font:inherit;cursor:pointer}.bs-tab.active{color:var(--primary-text-color,#17231c);background:var(--secondary-background-color,#f0f2ef);font-weight:650}
-    .bs-heading{font-size:21px;font-weight:500;margin:25px 0 9px}.bs-desc{color:var(--secondary-text-color,#55665a);font-size:13px;line-height:1.5;margin-bottom:20px}
-    .bs-field{margin:18px 0}.bs-label{font-size:14px;margin-bottom:10px}.bs-input{display:block;width:100%;background:var(--secondary-background-color,#f0f2ef);color:var(--primary-text-color,#18221c);border:0;border-bottom:1px solid var(--divider-color,#a5afa5);padding:14px 13px;min-height:50px;border-radius:11px 11px 0 0;font:inherit}
+    .bs-heading{font-size:21px;font-weight:500;margin:25px 0 9px}.bs-desc{color:var(--secondary-text-color,#55665a);font-size:13px;line-height:1.5;margin-bottom:24px}
+    .bs-field{display:block;margin:20px 0}.bs-label{font-size:14px;margin-bottom:10px}.bs-input{display:block;width:100%;background:var(--secondary-background-color,#f0f2ef);color:var(--primary-text-color,#18221c);border:0;border-bottom:1px solid var(--divider-color,#a5afa5);padding:14px 13px;min-height:50px;border-radius:11px 11px 0 0;font:inherit}
     ha-selector{display:block;width:100%;--mdc-theme-primary:var(--primary-color,#0b7457)}.bs-fallback{display:none}.bs-no-native .bs-fallback{display:block}
     .bs-row{border-bottom:1px solid var(--divider-color,#e3e7e3);padding:13px 0;display:flex;align-items:center;justify-content:space-between;gap:15px}
     .bs-row label{flex:1}.bs-row input[type=checkbox]{width:18px;height:18px;accent-color:var(--primary-color,#0c7157)}
@@ -261,7 +264,7 @@
     .bs-tools{display:flex;gap:7px;flex-wrap:wrap;margin:12px 0}.bs-btn{background:var(--secondary-background-color,#eff2ee);border:1px solid var(--divider-color,#dbe2db);color:var(--primary-text-color,#18221c);padding:9px 12px;border-radius:12px;font:inherit;cursor:pointer}
     .bs-btn.danger{color:var(--error-color,#bd4b42)}.bs-btn:disabled{opacity:.4;cursor:not-allowed}.bs-item{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:9px 0;border-bottom:1px solid var(--divider-color,#e0e5de)}
     .bs-itemtext{flex:1;min-width:0;overflow-wrap:anywhere}.bs-small{font-size:11px;color:var(--secondary-text-color,#55665a)}
-    details{border:1px solid var(--divider-color,#e0e5de);border-radius:14px;margin:10px 0;overflow:hidden}summary{cursor:pointer;padding:14px;font-weight:650;list-style:none}summary::-webkit-details-marker{display:none}
+    details{border:1px solid var(--divider-color,#e0e5de);border-radius:14px;margin:12px 0;overflow:hidden}summary{cursor:pointer;padding:16px 14px;font-weight:650;list-style:none;font-size:14px}summary::-webkit-details-marker{display:none}
     summary:after{content:'⌄';float:right;color:var(--secondary-text-color)}details[open] summary:after{content:'⌃'} .bs-detailbody{padding:1px 14px 16px}
     .bs-notice{padding:10px 12px;color:var(--error-color,#ad433f);font-size:12px;border-radius:9px;margin-top:8px}
     .bs-input:focus-visible,.bs-btn:focus-visible,.bs-tab:focus-visible{outline:2px solid var(--primary-color,#0b7457);outline-offset:2px}
@@ -303,7 +306,7 @@
       if(this._tab==='sezioni')body=`<div class="bs-heading">Sezioni dispositivi</div><div class="bs-desc">Le otto sezioni predefinite possono essere rinominate e nascoste. Aggiungi sezioni personalizzate, scegli le icone MDI e assegna i sensori batteria.</div>
         ${c.sections.map((s,i)=>this._section(s,i)).join('')}
         <div class="bs-panel"><div class="bs-label">Nuova sezione personalizzata</div><input class="bs-input" data-new-name maxlength="70" placeholder="Es. Telecomandi"/><div class="bs-tools"><button type="button" class="bs-btn" data-new-section="1">+ Aggiungi sezione</button></div></div>`;
-      if(this._tab==='riepilogo')body=`<div class="bs-heading">Monitoraggio batterie</div><div class="bs-desc">Scegli quando evidenziare una batteria scarica. Le soglie sono inclusive: 25% è già in allerta. La media complessiva esclude sempre Dispositivi personali; gli alert continuano a includerli.</div>${this._field('low_threshold','Soglia attenzione (%)','number')}${this._field('critical_threshold','Soglia critica (%)','number')}<div class="bs-muted">Le percentuali non disponibili non vengono inventate né conteggiate come batterie regolari.</div>`;
+      if(this._tab==='riepilogo')body=`<div class="bs-heading">Monitoraggio batterie</div><div class="bs-desc">Scegli le percentuali di avviso e di batteria critica. L'avviso scatta già al valore impostato. I dispositivi personali non entrano nella media, ma restano inclusi negli avvisi.</div>${this._field('low_threshold','Avviso batteria (%)','number')}${this._field('critical_threshold','Batteria critica (%)','number')}<div class="bs-muted">Le percentuali non disponibili non vengono inventate né conteggiate come batterie regolari.</div>`;
       if(this._tab==='aspetto')body=`<div class="bs-heading">Aspetto Edera</div><div class="bs-desc">Stessa tipografia, spaziature e selezione del tema della Security Panel Card.</div>${this._field('eyebrow','Intestazione superiore')}${this._field('title','Titolo')}<div class="bs-field"><div class="bs-label">Tema</div><select class="bs-input" data-key="theme_mode"><option value="auto" ${c.theme_mode==='auto'?'selected':''}>Automatico (Home Assistant)</option><option value="light" ${c.theme_mode==='light'?'selected':''}>Light Edera</option><option value="dark" ${c.theme_mode==='dark'?'selected':''}>Dark Edera</option></select></div>`;
       if(this._tab==='avanzate')body=`<div class="bs-heading">Avanzate</div><div class="bs-desc">Personalizza le informazioni visibili. La card è di sola lettura e non esegue comandi sui dispositivi.</div>${this._check('hide_empty','Nascondi sezioni senza dispositivi')}${this._check('show_unavailable','Mostra nel riepilogo le entità non disponibili')}<div class="bs-panel bs-muted">Sono supportati sensori percentuali e binary_sensor con device_class battery. I sensori binari mostrano Bassa/OK, non percentuali inventate. Nessun servizio cloud o richiesta allo storico.</div>`;
       this.shadowRoot.innerHTML=`<style>${EDIT_CSS}</style><div class="bs-editor"><div class="bs-tabs">${tabs.map(([id,label])=>`<button type="button" class="bs-tab ${this._tab===id?'active':''}" data-tab="${id}">${label}</button>`).join('')}</div>${body}${this._notice?`<div class="bs-notice" role="alert">${esc(this._notice)}</div>`:''}</div>`;
