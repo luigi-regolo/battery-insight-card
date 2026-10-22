@@ -92,7 +92,7 @@
     button:focus-visible{outline:2px solid var(--bs-accent);outline-offset:3px}
     .bs-icon{height:21px;width:21px;--mdc-icon-size:21px;flex:none;display:inline-flex;align-items:center;justify-content:center}
     .bs-shell{padding:18px;border:1px solid var(--bs-line);background:var(--bs-bg);border-radius:26px;min-width:0}
-    .bs-header{margin:2px 4px 17px}.bs-eyebrow{font-size:10px;font-weight:750;letter-spacing:1.7px;color:var(--bs-muted);margin-bottom:7px}
+    .bs-header{margin:2px 4px 17px}.bs-eyebrow{font-size:10px;font-weight:750;letter-spacing:1.7px;color:var(--bs-muted);margin-bottom:7px;text-transform:uppercase}
     .bs-title{font-size:25px;line-height:1.14;font-weight:780;letter-spacing:-.7px;overflow-wrap:anywhere}
     .bs-title b{color:var(--bs-accent)}
     .bs-row{border-radius:24px;border:1px solid var(--bs-line);padding:12px;background:var(--bs-tile);margin-top:9px}
@@ -140,14 +140,14 @@
     @container (max-width:360px){.bs-tile{padding:12px;min-height:148px}.bs-tile .bs-name{font-size:13px}}
     .bs-chevron{color:var(--bs-muted)}.bs-pill{margin-top:auto;display:inline-flex;align-items:center;gap:5px;width:fit-content;max-width:100%;min-width:0;padding:5px 9px;font-size:11px;font-weight:650;border-radius:999px;background:var(--bs-circle);color:var(--bs-text)}
     .bs-pill .bs-icon{height:14px;width:14px;--mdc-icon-size:14px}.bs-pill.low{color:var(--bs-amber)}.bs-pill.critical{color:var(--bs-red)}
-    .bs-details{display:inline-flex;align-items:center;justify-content:center;width:auto;max-width:100%;gap:12px;min-height:40px;padding:9px 13px;margin-top:14px;border:1px solid var(--bs-accent);border-radius:999px;background:var(--bs-tile);color:var(--bs-text);text-align:center;font-weight:650;font-size:12px}.bs-details[aria-expanded="true"],.bs-details:hover{background:var(--bs-accent);color:#fff}.bs-details-label{display:inline-flex;align-items:center;gap:8px;min-width:0}.bs-details-label .bs-icon{display:inline-flex;align-items:center;justify-content:center}
+    .bs-details{display:flex;align-items:center;justify-content:space-between;width:100%;min-width:0;gap:12px;min-height:42px;padding:10px 14px;margin-top:14px;border:1px solid var(--bs-accent);border-radius:16px;background:var(--bs-accent);color:#fff;text-align:left;font-weight:650;font-size:12px}.bs-details[aria-expanded="true"],.bs-details:hover{background:var(--bs-accent);color:#fff}.bs-details-label{display:inline-flex;align-items:center;gap:8px;min-width:0}.bs-details-label .bs-icon{display:inline-flex;align-items:center;justify-content:center}
     .bs-details .bs-icon{width:17px;height:17px;--mdc-icon-size:17px}
     .bs-empty{padding:16px;color:var(--bs-muted);font-size:12px;text-align:center}
     .bs-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.60);display:flex;align-items:center;justify-content:center;padding:max(18px,env(safe-area-inset-top)) 18px max(18px,env(safe-area-inset-bottom));z-index:9999}
-    .bs-dialog{background:var(--bs-bg);color:var(--bs-text);border:1px solid var(--bs-line);border-radius:26px;display:flex;flex-direction:column;width:min(470px,100%);max-height:min(82dvh,760px);box-shadow:0 24px 80px rgba(0,0,0,.28);overflow:hidden;min-width:0}
-    .bs-dialog-head{flex:none;display:flex;align-items:center;justify-content:space-between;gap:12px;background:var(--bs-bg);padding:21px 24px 10px;z-index:2;min-height:76px}
-    .bs-dialog-head strong{display:block;font-size:17px;font-weight:650;line-height:1.3}.bs-dialog-titles{min-width:0;flex:1}.bs-dialog-titles span{display:block;margin-top:4px;font-size:12px;color:var(--bs-muted)}.bs-close{display:flex;align-items:center;justify-content:center;border:0;border-radius:50%;background:var(--bs-tile);width:40px;height:40px;flex:none;line-height:0}.bs-close .bs-icon{width:19px;height:19px;--mdc-icon-size:19px}
-    .bs-dialog-body{overflow-y:auto;overscroll-behavior:contain;padding:16px 24px 24px;min-height:0;-webkit-overflow-scrolling:touch}
+    .bs-dialog{background:var(--bs-bg);color:var(--bs-text);border:1px solid var(--bs-line);border-radius:26px;display:block;padding:20px;width:min(390px,100%);max-width:100%;min-width:0;max-height:min(82vh,720px);max-height:min(82dvh,720px);box-shadow:0 18px 60px #0005;overflow-y:auto;overflow-x:hidden;overscroll-behavior:contain;-webkit-overflow-scrolling:touch}
+    .bs-dialog-head{display:flex;align-items:center;justify-content:space-between;gap:10px;min-height:38px;margin-bottom:10px;padding:0}
+    .bs-dialog-head strong{display:block;font-size:17px;font-weight:600;line-height:1.3}.bs-dialog-titles{min-width:0;flex:1}.bs-dialog-titles span{display:block;margin-top:4px;font-size:12px;color:var(--bs-muted)}.bs-close{display:flex;align-items:center;justify-content:center;border:0;border-radius:50%;background:var(--bs-tile);width:36px;height:36px;flex:none;line-height:0;padding:0}.bs-close .bs-icon{display:block;width:18px;height:18px;--mdc-icon-size:18px;flex:none}
+    .bs-dialog-body{padding:0;overflow:visible;min-height:0}
     .bs-stats{display:flex;flex-wrap:wrap;gap:9px;margin:0 0 18px}.bs-stat{border:1px solid var(--bs-line);border-radius:17px;padding:10px 13px;background:var(--bs-tile);font-size:12px;white-space:nowrap}
     .bs-stat b{font-size:15px;font-weight:750}.bs-filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:21px}.bs-popup-heading{font-size:13px;font-weight:650;line-height:1.4;margin:7px 0 12px}
     .bs-filter{border:1px solid var(--bs-line);border-radius:999px;padding:10px 15px;min-height:39px;background:var(--bs-tile);font-size:12px;line-height:1.2}.bs-filter.selected{background:var(--bs-accent);color:#fff;border-color:var(--bs-accent)}.bs-filter:focus-visible{outline:2px solid var(--bs-accent);outline-offset:2px}
@@ -156,10 +156,10 @@
     .bs-pct{font-weight:750;white-space:nowrap;font-size:14px}.bs-pct.low{color:var(--bs-amber)}.bs-pct.critical{color:var(--bs-red)}.bs-pct.unavailable{color:var(--bs-muted)}
     .bs-track{background:var(--bs-line);height:6px;border-radius:999px;overflow:hidden;margin-top:9px}.bs-fill{height:100%;background:var(--bs-accent);border-radius:999px}.bs-fill.low{background:var(--bs-amber)}.bs-fill.critical{background:var(--bs-red)}
     .bs-entityid{font-size:10px;color:var(--bs-muted);margin-top:3px;overflow-wrap:anywhere}
-    @container (max-width:390px){.bs-grid{grid-template-columns:1fr}.bs-tile{min-height:140px}}
+    @container (max-width:390px){.bs-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.bs-tile{min-height:143px;padding:9px 9px 10px;gap:6px}.bs-tile-symbol{width:34px;height:34px}.bs-tile .bs-icon{width:19px;height:19px;--mdc-icon-size:19px}.bs-tile .bs-name{font-size:12px;line-height:1.3}.bs-tile .bs-sub{font-size:11px;line-height:1.3}.bs-tile .bs-min{font-size:10px;padding-top:6px}.bs-tile .bs-min strong{font-size:11px}}
     @container (max-width:360px){.bs-shell{padding:13px}.bs-title{font-size:23px}}
     :host{container-type:inline-size}
-    @media(max-width:440px){.bs-shell{padding:13px}.bs-backdrop{padding:10px}.bs-dialog{max-height:calc(100dvh - 24px)}.bs-dialog-body{padding:14px 16px 20px}.bs-dialog-head{padding:17px 16px 8px;min-height:67px}}
+    @media(max-width:440px){.bs-shell{padding:13px}.bs-backdrop{padding:max(16px,env(safe-area-inset-top)) 16px max(16px,env(safe-area-inset-bottom))}.bs-dialog{width:min(390px,100%);max-height:min(82vh,720px);max-height:min(82dvh,720px);padding:18px}.bs-dialog-body{padding:0}.bs-dialog-head{padding:0;min-height:38px}}
     @media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;animation:none!important;transition:none!important}}
   `;
   class BatteryInsightCard extends HTMLElement {
@@ -212,7 +212,7 @@
       const all=sections.flatMap(s=>s.items),stats=summary(all,this._cfg);
       const sig=JSON.stringify({cfg:this._cfg,theme:this._theme(),dialog:this._dialog,filter:this._filter,items:all.map(x=>[x.id,x.name,x.kind,x.value])});
       if(sig===this._signature)return;this._signature=sig;
-      const previousScroll=this.shadowRoot.querySelector('.bs-dialog-body')?.scrollTop??0;
+      const previousScroll=this.shadowRoot.querySelector('.bs-dialog')?.scrollTop??0;
       this.setAttribute('data-theme',this._theme());
       // "Dispositivi personali" is deliberately excluded from the overall average.
       // It remains visible and still contributes to the alert count.
@@ -245,9 +245,9 @@
               ${minimum!==null?`<div class="bs-mini-track"><div class="bs-mini-fill ${minState}" style="width:${minimum}%"></div></div>`:''}</div>
             </button>`;
         }).join('')}</div>`:'<div class="bs-empty">Nessuna sezione visibile: usa l’editor della card per aggiungerla.</div>'}
-        <button class="bs-details" type="button" data-details="1" aria-haspopup="dialog" aria-expanded="${this._dialog==='__all__'}"><span class="bs-details-label">${icon('mdi:battery')} Dettagli batterie</span>${icon('mdi:chevron-right')}</button>
+        <button class="bs-details" type="button" data-details="1" aria-haspopup="dialog" aria-expanded="${this._dialog==='__all__'}"><span class="bs-details-label">${icon('mdi:format-list-bulleted')} Dettagli batterie</span>${icon('mdi:chevron-right')}</button>
       </div>${this._dialog?this._popup(sections):''}`;
-      const dialogBody=this.shadowRoot.querySelector('.bs-dialog-body');if(dialogBody)dialogBody.scrollTop=previousScroll;
+      const dialog=this.shadowRoot.querySelector('.bs-dialog');if(dialog)dialog.scrollTop=previousScroll;
     }
   }
   const EDIT_CSS=`
@@ -262,7 +262,7 @@
     .bs-muted{font-size:12px;line-height:1.5;color:var(--secondary-text-color,#5e6c62)}
     .bs-panel{border:1px solid var(--divider-color,#e0e5de);border-radius:14px;padding:14px;margin:15px 0}
     .bs-tools{display:flex;gap:7px;flex-wrap:wrap;margin:12px 0}.bs-btn{background:var(--secondary-background-color,#eff2ee);border:1px solid var(--divider-color,#dbe2db);color:var(--primary-text-color,#18221c);padding:9px 12px;border-radius:12px;font:inherit;cursor:pointer}
-    .bs-btn.danger{color:var(--error-color,#bd4b42)}.bs-btn:disabled{opacity:.4;cursor:not-allowed}.bs-item{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:9px 0;border-bottom:1px solid var(--divider-color,#e0e5de)}
+    .bs-btn.danger{color:var(--error-color,#bd4b42)}.bs-btn:disabled{opacity:.4;cursor:not-allowed}.bs-btn.bs-remove-x{display:flex;align-items:center;justify-content:center;flex:none;width:36px;height:36px;padding:0;border:1px solid var(--divider-color,#dfe5df);border-radius:50%;background:var(--secondary-background-color,#eef1ef);color:var(--secondary-text-color,#57655c);line-height:0}.bs-remove-x .bs-icon{display:block;flex:none;width:18px;height:18px;--mdc-icon-size:18px}.bs-item{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:9px 0;border-bottom:1px solid var(--divider-color,#e0e5de)}
     .bs-itemtext{flex:1;min-width:0;overflow-wrap:anywhere}.bs-small{font-size:11px;color:var(--secondary-text-color,#55665a)}
     details{border:1px solid var(--divider-color,#e0e5de);border-radius:14px;margin:12px 0;overflow:hidden}summary{cursor:pointer;padding:16px 14px;font-weight:650;list-style:none;font-size:14px}summary::-webkit-details-marker{display:none}
     summary:after{content:'⌄';float:right;color:var(--secondary-text-color)}details[open] summary:after{content:'⌃'} .bs-detailbody{padding:1px 14px 16px}
@@ -292,7 +292,7 @@
         <div class="bs-field"><div class="bs-label">Nome visualizzato</div><input class="bs-input" data-name="${esc(s.id)}" maxlength="70" value="${esc(s.name)}"></div>
         <div class="bs-field"><div class="bs-label">Icona MDI</div><div data-icon-slot="${esc(s.id)}"></div><div class="bs-fallback"><input class="bs-input" data-icon="${esc(s.id)}" value="${esc(s.icon)}" placeholder="mdi:battery"></div></div>
         <div class="bs-panel"><div class="bs-label">Entità batteria (${s.entities.length})</div>
-          ${s.entities.map(id=>`<div class="bs-item"><div class="bs-itemtext">${esc(this._hass?.states?.[id]?.attributes?.friendly_name||id)}<div class="bs-small">${esc(id)}</div></div><button type="button" class="bs-btn danger" data-remove="${esc(s.id)}" data-entity="${esc(id)}" aria-label="Rimuovi ${esc(id)}">✕</button></div>`).join('')}
+          ${s.entities.map(id=>`<div class="bs-item"><div class="bs-itemtext">${esc(this._hass?.states?.[id]?.attributes?.friendly_name||id)}<div class="bs-small">${esc(id)}</div></div><button type="button" class="bs-btn bs-remove-x" data-remove="${esc(s.id)}" data-entity="${esc(id)}" aria-label="Rimuovi ${esc(id)}" title="Rimuovi ${esc(id)}">${icon('mdi:close')}</button></div>`).join('')}
           <div class="bs-field"><div class="bs-muted">Cerca e aggiungi un sensore batteria</div><div data-entity-slot="${esc(s.id)}"></div><div class="bs-fallback"><input class="bs-input" data-add="${esc(s.id)}" placeholder="sensor.nome_batteria"></div></div>
         </div>
         <div class="bs-tools"><button type="button" class="bs-btn" data-move="${esc(s.id)}" data-step="-1" ${index===0?'disabled':''}>↑ Su</button>
