@@ -13,6 +13,10 @@ It organizes battery-powered devices into customizable categories, providing an 
 
 The card uses Home Assistant entities already configured in the user's installation. It does not require a dedicated account, paid API, or subscription.
 
+## Preview
+
+![Battery Insight Card Preview](assets/preview-main.png)
+
 ## Features
 
 - **Device categories:** Eight predefined sections for Personal Devices, Motion Sensors, Doors and Windows, Other Sensors, Digital Peephole, Smart Locks, Alarm, and Radiators.
