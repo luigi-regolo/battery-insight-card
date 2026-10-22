@@ -86,8 +86,8 @@
   const CARD_CSS=`
     :host{display:block;min-width:0;font-family:var(--ha-font-family-body,var(--paper-font-body1_-_font-family,Roboto,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif));color:var(--bs-text);font-size:14px}
     *,*:before,*:after{box-sizing:border-box}
-    :host([data-theme=light]){--bs-bg:#fafbf9;--bs-tile:#f0f2ef;--bs-circle:#fff;--bs-line:#e0e5df;--bs-text:#18221c;--bs-muted:#56675c;--bs-accent:#0a7156;--bs-red:#ae4742;--bs-amber:#ad701c}
-    :host([data-theme=dark]){--bs-bg:#101211;--bs-tile:#191c1a;--bs-circle:#282b29;--bs-line:#2b302c;--bs-text:#f5f7f4;--bs-muted:#bbc5bd;--bs-accent:#45b594;--bs-red:#f17878;--bs-amber:#efb45f}
+    :host([data-theme=light]){--bs-bg:#fafbf9;--bs-tile:#f0f2ef;--bs-circle:#fff;--bs-line:#e0e5df;--bs-text:#18221c;--bs-muted:#56675c;--bs-accent:var(--edera-emerald-color,#0E6B52);--bs-red:#ae4742;--bs-amber:#ad701c}
+    :host([data-theme=dark]){--bs-bg:#101211;--bs-tile:#191c1a;--bs-circle:#282b29;--bs-line:#2b302c;--bs-text:#f5f7f4;--bs-muted:#bbc5bd;--bs-accent:var(--edera-emerald-color,#0E6B52);--bs-red:#f17878;--bs-amber:#efb45f}
     button{font:inherit;cursor:pointer;color:inherit;-webkit-tap-highlight-color:transparent}
     button:focus-visible{outline:2px solid var(--bs-accent);outline-offset:3px}
     .bs-icon{height:21px;width:21px;--mdc-icon-size:21px;flex:none;display:inline-flex;align-items:center;justify-content:center}
@@ -298,9 +298,9 @@
     .bs-tab{border:0;background:none;color:var(--secondary-text-color,#536359);border-radius:13px;padding:10px 13px;white-space:nowrap;font:inherit;cursor:pointer}.bs-tab.active{color:var(--primary-text-color,#17231c);background:var(--secondary-background-color,#f0f2ef);font-weight:650}
     .bs-heading{font-size:21px;font-weight:500;margin:25px 0 9px}.bs-desc{color:var(--secondary-text-color,#55665a);font-size:13px;line-height:1.5;margin-bottom:24px}
     .bs-field{display:block;margin:20px 0}.bs-label{font-size:14px;margin-bottom:10px}.bs-input{display:block;width:100%;background:var(--secondary-background-color,#f0f2ef);color:var(--primary-text-color,#18221c);border:0;border-bottom:1px solid var(--divider-color,#a5afa5);padding:14px 13px;min-height:50px;border-radius:11px 11px 0 0;font:inherit}
-    ha-selector{display:block;width:100%;--mdc-theme-primary:var(--primary-color,#0b7457)}.bs-fallback{display:none}.bs-no-native .bs-fallback{display:block}
+    ha-selector{display:block;width:100%;--mdc-theme-primary:var(--edera-emerald-color,#0E6B52)}.bs-fallback{display:none}.bs-no-native .bs-fallback{display:block}
     .bs-row{border-bottom:1px solid var(--divider-color,#e3e7e3);padding:13px 0;display:flex;align-items:center;justify-content:space-between;gap:15px}
-    .bs-row label{flex:1}.bs-row input[type=checkbox]{width:18px;height:18px;accent-color:var(--primary-color,#0c7157)}
+    .bs-row label{flex:1}.bs-row input[type=checkbox]{width:18px;height:18px;accent-color:var(--edera-emerald-color,#0E6B52)}
     .bs-muted{font-size:12px;line-height:1.5;color:var(--secondary-text-color,#5e6c62)}
     .bs-panel{border:1px solid var(--divider-color,#e0e5de);border-radius:14px;padding:14px;margin:15px 0}
     .bs-tools{display:flex;gap:7px;flex-wrap:wrap;margin:12px 0}.bs-btn{background:var(--secondary-background-color,#eff2ee);border:1px solid var(--divider-color,#dbe2db);color:var(--primary-text-color,#18221c);padding:9px 12px;border-radius:12px;font:inherit;cursor:pointer}
@@ -309,7 +309,7 @@
     details{border:1px solid var(--divider-color,#e0e5de);border-radius:14px;margin:12px 0;overflow:hidden}summary{cursor:pointer;padding:16px 14px;font-weight:650;list-style:none;font-size:14px}summary::-webkit-details-marker{display:none}
     summary:after{content:'⌄';float:right;color:var(--secondary-text-color)}details[open] summary:after{content:'⌃'} .bs-detailbody{padding:1px 14px 16px}
     .bs-notice{padding:10px 12px;color:var(--error-color,#ad433f);font-size:12px;border-radius:9px;margin-top:8px}
-    .bs-input:focus-visible,.bs-btn:focus-visible,.bs-tab:focus-visible{outline:2px solid var(--primary-color,#0b7457);outline-offset:2px}
+    .bs-input:focus-visible,.bs-btn:focus-visible,.bs-tab:focus-visible{outline:2px solid var(--edera-emerald-color,#0E6B52);outline-offset:2px}
   `;
   class BatteryInsightCardEditor extends HTMLElement {
     constructor(){
