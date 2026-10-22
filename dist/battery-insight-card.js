@@ -143,7 +143,7 @@
     .bs-details{display:flex;align-items:center;justify-content:space-between;width:100%;min-width:0;gap:12px;min-height:42px;padding:10px 14px;margin-top:14px;border:1px solid var(--bs-accent);border-radius:16px;background:var(--bs-accent);color:#fff;text-align:left;font-weight:650;font-size:12px}.bs-details[aria-expanded="true"],.bs-details:hover{background:var(--bs-accent);color:#fff}.bs-details-label{display:inline-flex;align-items:center;gap:8px;min-width:0}.bs-details-label .bs-icon{display:inline-flex;align-items:center;justify-content:center}
     .bs-details .bs-icon{width:17px;height:17px;--mdc-icon-size:17px}
     .bs-empty{padding:16px;color:var(--bs-muted);font-size:12px;text-align:center}
-    .bs-backdrop{position:fixed;inset:0;z-index:9999;background:#0009;display:grid;place-items:center;overflow:hidden;padding:max(24px,env(safe-area-inset-top)) 24px max(24px,env(safe-area-inset-bottom))}
+    .bs-backdrop{position:fixed;inset:0;z-index:9999;background:#0009;display:grid;place-items:center;overflow:hidden;overscroll-behavior:none;padding:max(24px,env(safe-area-inset-top)) 24px max(24px,env(safe-area-inset-bottom))}
     .bs-dialog{background:var(--bs-bg);color:var(--bs-text);border:1px solid var(--bs-line);border-radius:26px;display:block;padding:20px;width:min(390px,100%);max-width:100%;min-width:0;max-height:min(82vh,720px);max-height:min(82dvh,720px);box-shadow:0 18px 60px #0005;overflow-y:auto;overflow-x:hidden;overscroll-behavior:contain;-webkit-overflow-scrolling:touch}
     .bs-dialog-head{display:flex;align-items:center;justify-content:space-between;gap:10px;min-height:38px;margin-bottom:10px;padding:0}
     .bs-dialog-head strong{display:block;font-size:17px;font-weight:600;line-height:1.3}.bs-dialog-titles{min-width:0;flex:1}.bs-dialog-titles span{display:block;margin-top:4px;font-size:12px;color:var(--bs-muted)}.bs-close{display:flex;align-items:center;justify-content:center;border:0;border-radius:50%;background:var(--bs-tile);width:36px;height:36px;flex:none;line-height:0;padding:0}.bs-close .bs-icon{display:block;width:18px;height:18px;--mdc-icon-size:18px;flex:none}
@@ -171,11 +171,50 @@
       super();this.attachShadow({mode:'open'});this._cfg=normalize({});this._hass=null;this._dialog=null;this._filter='all';this._signature='';this._returnFocus=null;
       this._media=typeof matchMedia==='function'?matchMedia('(prefers-color-scheme: dark)'):null;
       this._appearance=()=>this._render();this._media?.addEventListener?.('change',this._appearance);
+      // Temporarily intercept scroll gestures while this popup is visible.
+      // Unlike changing body position/overflow, this preserves Home Assistant's dashboard scroll position.
+      this._modalLockActive=false;this._modalTouchY=0;this._modalTouchX=0;
+      this._onModalTouchStart=e=>{
+        if(!this._dialog||e.touches?.length!==1)return;
+        const t=e.touches[0];this._modalTouchY=t.clientY;this._modalTouchX=t.clientX;
+      };
+      this._onModalTouchMove=e=>{
+        if(!this._dialog||e.touches?.length!==1)return;
+        const t=e.touches[0],deltaY=this._modalTouchY-t.clientY,deltaX=this._modalTouchX-t.clientX;
+        this._modalTouchY=t.clientY;this._modalTouchX=t.clientX;
+        this._preventScrollLeak(e,deltaY,Math.abs(deltaX)>Math.abs(deltaY));
+      };
+      this._onModalWheel=e=>this._preventScrollLeak(e,e.deltaY);
       this.shadowRoot.addEventListener('click',e=>this._click(e));
       this.shadowRoot.addEventListener('keydown',e=>{if(e.key==='Escape'&&this._dialog)this._close();});
     }
     connectedCallback(){this._render();}
-    disconnectedCallback(){this._media?.removeEventListener?.('change',this._appearance);}
+    disconnectedCallback(){this._setModalScrollLock(false);this._media?.removeEventListener?.('change',this._appearance);}
+    _setModalScrollLock(enabled){
+      if(this._modalLockActive===enabled)return;
+      this._modalLockActive=enabled;
+      if(enabled){
+        document.addEventListener('touchstart',this._onModalTouchStart,{capture:true,passive:true});
+        document.addEventListener('touchmove',this._onModalTouchMove,{capture:true,passive:false});
+        document.addEventListener('wheel',this._onModalWheel,{capture:true,passive:false});
+      }else{
+        document.removeEventListener('touchstart',this._onModalTouchStart,true);
+        document.removeEventListener('touchmove',this._onModalTouchMove,true);
+        document.removeEventListener('wheel',this._onModalWheel,true);
+      }
+    }
+    _preventScrollLeak(event,deltaY,horizontal=false){
+      if(!this._dialog||!event.cancelable)return;
+      const dialog=this.shadowRoot.querySelector('.bs-dialog');
+      if(!dialog||!event.composedPath().includes(dialog)){
+        event.preventDefault();return;
+      }
+      const maxScroll=Math.max(0,dialog.scrollHeight-dialog.clientHeight);
+      // Keep the popup scrollable but stop Safari from chaining overscroll to the dashboard.
+      if(horizontal||maxScroll<=1||(deltaY<0&&dialog.scrollTop<=1)||(deltaY>0&&dialog.scrollTop>=maxScroll-1)){
+        event.preventDefault();
+      }
+    }
     setConfig(cfg){this._cfg=normalize(cfg);this._render();}
     set hass(hass){this._hass=hass;this._render();}
     getCardSize(){return Math.max(3,Math.ceil(this._cfg.sections.filter(s=>s.visible&&(!this._cfg.hide_empty||s.entities.length)).length/2)+2);}
@@ -250,6 +289,7 @@
         <button class="bs-details" type="button" data-details="1" aria-haspopup="dialog" aria-expanded="${this._dialog==='__all__'}"><span class="bs-details-label">${icon('mdi:format-list-bulleted')} Dettagli batterie</span>${icon('mdi:chevron-right')}</button>
       </div></div>${this._dialog?this._popup(sections):''}`;
       const dialog=this.shadowRoot.querySelector('.bs-dialog');if(dialog)dialog.scrollTop=previousScroll;
+      this._setModalScrollLock(Boolean(dialog));
     }
   }
   const EDIT_CSS=`
