@@ -49,7 +49,7 @@
     }
     return {
       type:`custom:${TAG}`,
-      eyebrow:String(raw.eyebrow??'MONITORAGGIO DISPOSITIVI').slice(0,90),
+      eyebrow:String(raw.eyebrow==='MONITORAGGIO DISPOSITIVI'?'BATTERY INSIGHT CARD':(raw.eyebrow??'BATTERY INSIGHT CARD')).slice(0,90),
       title:String(raw.title??'Stato batterie').slice(0,80),
       theme_mode:['auto','light','dark'].includes(raw.theme_mode)?raw.theme_mode:'auto',
       low_threshold:Math.max(1,Math.min(100,Math.round(num(raw.low_threshold,25)))),
@@ -143,7 +143,7 @@
     .bs-details{display:flex;align-items:center;justify-content:space-between;width:100%;min-width:0;gap:12px;min-height:42px;padding:10px 14px;margin-top:14px;border:1px solid var(--bs-accent);border-radius:16px;background:var(--bs-accent);color:#fff;text-align:left;font-weight:650;font-size:12px}.bs-details[aria-expanded="true"],.bs-details:hover{background:var(--bs-accent);color:#fff}.bs-details-label{display:inline-flex;align-items:center;gap:8px;min-width:0}.bs-details-label .bs-icon{display:inline-flex;align-items:center;justify-content:center}
     .bs-details .bs-icon{width:17px;height:17px;--mdc-icon-size:17px}
     .bs-empty{padding:16px;color:var(--bs-muted);font-size:12px;text-align:center}
-    .bs-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.60);display:flex;align-items:center;justify-content:center;padding:max(18px,env(safe-area-inset-top)) 18px max(18px,env(safe-area-inset-bottom));z-index:9999}
+    .bs-backdrop{position:fixed;inset:0;z-index:9999;background:#0009;display:grid;place-items:center;overflow:hidden;padding:max(24px,env(safe-area-inset-top)) 24px max(24px,env(safe-area-inset-bottom))}
     .bs-dialog{background:var(--bs-bg);color:var(--bs-text);border:1px solid var(--bs-line);border-radius:26px;display:block;padding:20px;width:min(390px,100%);max-width:100%;min-width:0;max-height:min(82vh,720px);max-height:min(82dvh,720px);box-shadow:0 18px 60px #0005;overflow-y:auto;overflow-x:hidden;overscroll-behavior:contain;-webkit-overflow-scrolling:touch}
     .bs-dialog-head{display:flex;align-items:center;justify-content:space-between;gap:10px;min-height:38px;margin-bottom:10px;padding:0}
     .bs-dialog-head strong{display:block;font-size:17px;font-weight:600;line-height:1.3}.bs-dialog-titles{min-width:0;flex:1}.bs-dialog-titles span{display:block;margin-top:4px;font-size:12px;color:var(--bs-muted)}.bs-close{display:flex;align-items:center;justify-content:center;border:0;border-radius:50%;background:var(--bs-tile);width:36px;height:36px;flex:none;line-height:0;padding:0}.bs-close .bs-icon{display:block;width:18px;height:18px;--mdc-icon-size:18px;flex:none}
@@ -158,8 +158,10 @@
     .bs-entityid{font-size:10px;color:var(--bs-muted);margin-top:3px;overflow-wrap:anywhere}
     @container (max-width:390px){.bs-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.bs-tile{min-height:143px;padding:9px 9px 10px;gap:6px}.bs-tile-symbol{width:34px;height:34px}.bs-tile .bs-icon{width:19px;height:19px;--mdc-icon-size:19px}.bs-tile .bs-name{font-size:12px;line-height:1.3}.bs-tile .bs-sub{font-size:11px;line-height:1.3}.bs-tile .bs-min{font-size:10px;padding-top:6px}.bs-tile .bs-min strong{font-size:11px}}
     @container (max-width:360px){.bs-shell{padding:13px}.bs-title{font-size:23px}}
-    :host{container-type:inline-size}
-    @media(max-width:440px){.bs-shell{padding:13px}.bs-backdrop{padding:max(16px,env(safe-area-inset-top)) 16px max(16px,env(safe-area-inset-bottom))}.bs-dialog{width:min(390px,100%);max-height:min(82vh,720px);max-height:min(82dvh,720px);padding:18px}.bs-dialog-body{padding:0}.bs-dialog-head{padding:0;min-height:38px}}
+    .bs-container{display:block;width:100%;max-width:100%;min-width:0;container-type:inline-size}
+    @media(max-width:440px){.bs-shell{padding:13px}}
+    @media(max-width:599px){.bs-backdrop{padding:max(20px,env(safe-area-inset-top)) 18px max(20px,env(safe-area-inset-bottom))}.bs-dialog{width:min(350px,100%);max-height:min(68vh,560px);max-height:min(68dvh,560px);border-radius:24px;padding:18px}}
+    @media(max-height:480px){.bs-dialog{max-height:calc(100vh - 32px);max-height:calc(100dvh - 32px)}}
     @media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;animation:none!important;transition:none!important}}
   `;
   class BatteryInsightCard extends HTMLElement {
@@ -220,7 +222,7 @@
       const percentages=sections.filter(s=>s.id!=='smartphone').flatMap(s=>s.items)
         .filter(b=>b.kind==='percentage').map(b=>b.value);
       const mean=percentages.length ? Math.round(percentages.reduce((sum,value)=>sum+value,0)/percentages.length) : null;
-      this.shadowRoot.innerHTML=`<style>${CARD_CSS}</style><div class="bs-shell">
+      this.shadowRoot.innerHTML=`<style>${CARD_CSS}</style><div class="bs-container"><div class="bs-shell">
         <header class="bs-header"><div class="bs-eyebrow">${esc(this._cfg.eyebrow)}</div><div class="bs-title">${esc(this._cfg.title)}<b>.</b></div></header>
         <section class="bs-metrics" aria-label="Riepilogo batterie">
           <div class="bs-metric"><div class="bs-metric-label">Media batterie casa</div><div class="bs-metric-value">${mean===null?'—':mean+'%'}</div><div class="bs-metric-track"><div class="bs-metric-fill" style="width:${mean??0}%"></div></div><div class="bs-metric-detail">Esclusi dispositivi personali · ${percentages.length} sensori</div></div>
@@ -246,7 +248,7 @@
             </button>`;
         }).join('')}</div>`:'<div class="bs-empty">Nessuna sezione visibile: usa l’editor della card per aggiungerla.</div>'}
         <button class="bs-details" type="button" data-details="1" aria-haspopup="dialog" aria-expanded="${this._dialog==='__all__'}"><span class="bs-details-label">${icon('mdi:format-list-bulleted')} Dettagli batterie</span>${icon('mdi:chevron-right')}</button>
-      </div>${this._dialog?this._popup(sections):''}`;
+      </div></div>${this._dialog?this._popup(sections):''}`;
       const dialog=this.shadowRoot.querySelector('.bs-dialog');if(dialog)dialog.scrollTop=previousScroll;
     }
   }
