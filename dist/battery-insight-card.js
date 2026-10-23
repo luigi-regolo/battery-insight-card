@@ -92,55 +92,59 @@
     button:focus-visible{outline:2px solid var(--bs-accent);outline-offset:3px}
     .bs-icon{height:21px;width:21px;--mdc-icon-size:21px;flex:none;display:inline-flex;align-items:center;justify-content:center}
     .bs-shell{padding:18px;border:1px solid var(--bs-line);background:var(--bs-bg);border-radius:26px;min-width:0}
-    .bs-header{margin:2px 4px 17px}.bs-eyebrow{font-size:10px;font-weight:750;letter-spacing:1.7px;color:var(--bs-muted);margin-bottom:7px;text-transform:uppercase}
+    .bs-header{margin:2px 4px 12px}.bs-eyebrow{font-size:10px;font-weight:750;letter-spacing:1.7px;color:var(--bs-muted);margin-bottom:7px;text-transform:uppercase}
     .bs-title{font-size:25px;line-height:1.14;font-weight:780;letter-spacing:-.7px;overflow-wrap:anywhere}
     .bs-title b{color:var(--bs-accent)}
     .bs-row{border-radius:24px;border:1px solid var(--bs-line);padding:12px;background:var(--bs-tile);margin-top:9px}
-    .bs-metrics{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:9px}
-    .bs-metric{background:var(--bs-tile);border:1px solid var(--bs-line);border-radius:20px;padding:13px;min-width:0}
+    .bs-metrics{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-top:8px}
+    .bs-metric{background:var(--bs-tile);border:1px solid var(--bs-line);border-radius:18px;padding:10px;min-width:0}
     .bs-metric-label{font-size:11px;color:var(--bs-muted);line-height:1.4}
-    .bs-metric-value{font-size:25px;line-height:1.3;font-weight:750;margin:5px 0 4px;font-variant-numeric:tabular-nums}
+    .bs-metric-value{font-size:29px;line-height:1.15;font-weight:650;letter-spacing:-.7px;margin:4px 0 2px;font-variant-numeric:tabular-nums}
     .bs-metric-value.low{color:var(--bs-red)}
     .bs-metric-detail{font-size:11px;color:var(--bs-muted);line-height:1.4}
-    .bs-metric-track{height:5px;background:var(--bs-line);overflow:hidden;border-radius:99px;margin:8px 0 2px}
+    .bs-metric-track{height:5px;background:var(--bs-line);overflow:hidden;border-radius:99px;margin:6px 0 2px}
     .bs-metric-fill{height:100%;background:var(--bs-accent);border-radius:99px}
 
     .bs-intro{display:flex;align-items:center;flex-wrap:wrap;gap:11px}.bs-orb{width:43px;height:43px;flex:none;border-radius:50%;background:var(--bs-circle);display:grid;place-items:center}
     .bs-main{flex:1;min-width:0}.bs-name{font-size:14px;font-weight:650;line-height:1.3}.bs-sub{font-size:12px;color:var(--bs-muted);margin-top:3px;line-height:1.45}
     .bs-alert{display:flex;align-items:center;gap:6px;margin-left:auto;font-weight:700;font-size:12px;color:var(--bs-amber)}
     .bs-alert.is-ok{color:var(--bs-accent)}.bs-alert.is-critical{color:var(--bs-red)}
-    .bs-heading{font-size:10px;font-weight:700;letter-spacing:1.3px;color:var(--bs-muted);margin:19px 4px 10px;text-transform:uppercase}
+    .bs-heading{font-size:10px;font-weight:700;letter-spacing:1.3px;color:var(--bs-muted);margin:13px 4px 8px;text-transform:uppercase}
     .bs-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));grid-auto-rows:1fr;gap:12px}
     .bs-tile{display:flex;min-width:0;min-height:98px;flex-direction:column;gap:6px;text-align:left;align-items:stretch;padding:9px 10px;border:1px solid var(--bs-line);border-radius:24px;background:var(--bs-tile)}
     .bs-tilehead{display:flex;align-items:center;gap:9px;min-width:0}.bs-tile .bs-orb{width:41px;height:41px}.bs-tile .bs-icon{height:22px;width:22px;--mdc-icon-size:22px}
     .bs-tiletext{flex:1;min-width:0}.bs-tile .bs-name{font-size:13px;overflow-wrap:anywhere}.bs-tile .bs-sub{font-size:11.5px;overflow-wrap:anywhere}
     /* Security Panel geometry, compact visual states as in approved category grid. */
-    .bs-grid{gap:10px}
-    .bs-tile{min-height:156px;padding:11px 12px 12px;border-radius:24px;gap:8px}
-    .bs-tilehead{justify-content:space-between;min-height:24px;align-items:center}
-    .bs-tile .bs-icon{width:21px;height:21px;--mdc-icon-size:21px}
-    .bs-tile-symbol{display:inline-flex;align-items:center;justify-content:center;width:43px;height:43px;border-radius:50%;background:var(--bs-circle);color:var(--bs-text);flex:none}
-    .bs-tile-state{display:inline-flex;align-items:center;justify-content:center;min-height:30px;min-width:30px;color:var(--bs-muted)}
+    .bs-grid{gap:8px}
+    .bs-tile{min-height:100px;padding:10px 11px;border-radius:20px;gap:7px}
+    .bs-tilehead{justify-content:flex-start;min-height:30px;align-items:center;gap:7px}
+    .bs-tile .bs-icon{width:18px;height:18px;--mdc-icon-size:18px}
+    .bs-tile-symbol{display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:50%;background:var(--bs-circle);color:var(--bs-text);flex:none}
+    .bs-tile-state{display:inline-flex;align-items:center;justify-content:center;min-height:22px;min-width:20px;flex:none;margin-left:auto;color:var(--bs-muted)}
     .bs-tile-state.normal{color:var(--bs-accent)}
     .bs-tile-state.low{color:var(--bs-amber)}
     .bs-tile-state.critical{color:var(--bs-red)}
     .bs-tile-caption{display:flex;flex-direction:column;align-items:flex-start;min-width:0;gap:5px;margin-top:2px;line-height:1.35}
-    .bs-tile .bs-name{display:block;width:100%;font-size:13px;font-weight:650;line-height:1.35;overflow-wrap:anywhere}
-    .bs-tile .bs-sub{display:block;width:100%;font-size:12px;line-height:1.4;margin:0;color:var(--bs-muted);overflow-wrap:anywhere}
+    .bs-tile .bs-name{display:block;flex:1;min-width:0;font-size:12px;font-weight:650;line-height:1.25;overflow-wrap:anywhere}
+    .bs-tile .bs-sub{display:block;min-width:0;font-size:11px;line-height:1.25;margin:0;color:var(--bs-muted);overflow-wrap:anywhere}
     .bs-tile .bs-sub.low{color:var(--bs-amber)}
     .bs-tile .bs-sub.critical{color:var(--bs-red)}
-    .bs-min{font-size:11px;line-height:1.4;color:var(--bs-muted);margin-top:auto;padding-top:8px}
-    .bs-min strong{font-size:11.5px;font-weight:650;color:var(--bs-text);font-variant-numeric:tabular-nums}
+    .bs-min{font-size:11px;line-height:1.25;color:var(--bs-muted);flex:none;text-align:right;white-space:nowrap}
+    .bs-min strong{font-size:12px;font-weight:600;letter-spacing:-.2px;color:var(--bs-text);font-variant-numeric:tabular-nums}
     .bs-min.low strong{color:var(--bs-amber)}
     .bs-min.critical strong{color:var(--bs-red)}
-    .bs-mini-track{height:4px;width:100%;background:var(--bs-line);border-radius:50px;overflow:hidden;margin-top:6px}
+    .bs-mini-track{height:4px;width:100%;background:var(--bs-line);border-radius:50px;overflow:hidden;margin-top:auto}
     .bs-mini-fill{height:100%;background:var(--bs-accent);border-radius:50px}
     .bs-mini-fill.low{background:var(--bs-amber)}
     .bs-mini-fill.critical{background:var(--bs-red)}
-    @container (max-width:360px){.bs-tile{padding:12px;min-height:148px}.bs-tile .bs-name{font-size:13px}}
+    .bs-tile-data{display:flex;align-items:baseline;justify-content:space-between;gap:5px;min-width:0}
+    .bs-tile-data .bs-sub{min-width:0;flex:1}
+    .bs-tile-warning{font-size:11px;line-height:1.25;color:var(--bs-muted);overflow-wrap:anywhere}
+    .bs-tile-warning.low{color:var(--bs-amber)}.bs-tile-warning.critical{color:var(--bs-red)}
+    @container (max-width:360px){.bs-tile{padding:8px;min-height:100px}.bs-tile .bs-name{font-size:12px}}
     .bs-chevron{color:var(--bs-muted)}.bs-pill{margin-top:auto;display:inline-flex;align-items:center;gap:5px;width:fit-content;max-width:100%;min-width:0;padding:5px 9px;font-size:11px;font-weight:650;border-radius:999px;background:var(--bs-circle);color:var(--bs-text)}
     .bs-pill .bs-icon{height:14px;width:14px;--mdc-icon-size:14px}.bs-pill.low{color:var(--bs-amber)}.bs-pill.critical{color:var(--bs-red)}
-    .bs-details{display:flex;align-items:center;justify-content:space-between;width:100%;min-width:0;gap:12px;min-height:42px;padding:10px 14px;margin-top:14px;border:1px solid var(--bs-accent);border-radius:16px;background:var(--bs-accent);color:#fff;text-align:left;font-weight:650;font-size:12px}.bs-details[aria-expanded="true"],.bs-details:hover{background:var(--bs-accent);color:#fff}.bs-details-label{display:inline-flex;align-items:center;gap:8px;min-width:0}.bs-details-label .bs-icon{display:inline-flex;align-items:center;justify-content:center}
+    .bs-details{display:flex;align-items:center;justify-content:space-between;width:100%;min-width:0;gap:12px;min-height:42px;padding:10px 14px;margin-top:10px;border:1px solid var(--bs-accent);border-radius:16px;background:var(--bs-accent);color:#fff;text-align:left;font-weight:650;font-size:12px}.bs-details[aria-expanded="true"],.bs-details:hover{background:var(--bs-accent);color:#fff}.bs-details-label{display:inline-flex;align-items:center;gap:8px;min-width:0}.bs-details-label .bs-icon{display:inline-flex;align-items:center;justify-content:center}
     .bs-details .bs-icon{width:17px;height:17px;--mdc-icon-size:17px}
     .bs-empty{padding:16px;color:var(--bs-muted);font-size:12px;text-align:center}
     .bs-backdrop{position:fixed;inset:0;z-index:9999;background:#0009;display:grid;place-items:center;overflow:hidden;overscroll-behavior:none;padding:max(24px,env(safe-area-inset-top)) 24px max(24px,env(safe-area-inset-bottom))}
@@ -149,15 +153,15 @@
     .bs-dialog-head strong{display:block;font-size:17px;font-weight:600;line-height:1.3}.bs-dialog-titles{min-width:0;flex:1}.bs-dialog-titles span{display:block;margin-top:4px;font-size:12px;color:var(--bs-muted)}.bs-close{display:flex;align-items:center;justify-content:center;border:0;border-radius:50%;background:var(--bs-tile);width:36px;height:36px;flex:none;line-height:0;padding:0}.bs-close .bs-icon{display:block;width:18px;height:18px;--mdc-icon-size:18px;flex:none}
     .bs-dialog-body{padding:0;overflow:visible;min-height:0}
     .bs-stats{display:flex;flex-wrap:wrap;gap:9px;margin:0 0 18px}.bs-stat{border:1px solid var(--bs-line);border-radius:17px;padding:10px 13px;background:var(--bs-tile);font-size:12px;white-space:nowrap}
-    .bs-stat b{font-size:15px;font-weight:750}.bs-filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:21px}.bs-popup-heading{font-size:13px;font-weight:650;line-height:1.4;margin:7px 0 12px}
+    .bs-stat b{font-size:14px;font-weight:650;font-variant-numeric:tabular-nums}.bs-filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:21px}.bs-popup-heading{font-size:13px;font-weight:650;line-height:1.4;margin:7px 0 12px}
     .bs-filter{border:1px solid var(--bs-line);border-radius:999px;padding:10px 15px;min-height:39px;background:var(--bs-tile);font-size:12px;line-height:1.2}.bs-filter.selected{background:var(--bs-accent);color:#fff;border-color:var(--bs-accent)}.bs-filter:focus-visible{outline:2px solid var(--bs-accent);outline-offset:2px}
     .bs-entry{padding:13px 14px;background:var(--bs-tile);border:1px solid var(--bs-line);border-radius:17px;margin-bottom:9px}.bs-entry:last-child{margin-bottom:0}
     .bs-entrytop{display:flex;align-items:center;justify-content:space-between;gap:12px}.bs-entryidentity{display:flex;align-items:center;gap:9px;min-width:0;flex:1}.bs-entryidentity .bs-icon{width:21px;height:21px;--mdc-icon-size:21px}.bs-entryname{font-size:13px;line-height:1.35;font-weight:650;min-width:0;overflow-wrap:anywhere}.bs-entry-status{margin:6px 0 0 30px;color:var(--bs-muted);font-size:11px}.bs-entry-status.low{color:var(--bs-amber)}.bs-entry-status.critical{color:var(--bs-red)}
-    .bs-pct{font-weight:750;white-space:nowrap;font-size:14px}.bs-pct.low{color:var(--bs-amber)}.bs-pct.critical{color:var(--bs-red)}.bs-pct.unavailable{color:var(--bs-muted)}
+    .bs-pct{font-weight:650;letter-spacing:-.2px;font-variant-numeric:tabular-nums;white-space:nowrap;font-size:13px}.bs-pct.low{color:var(--bs-amber)}.bs-pct.critical{color:var(--bs-red)}.bs-pct.unavailable{color:var(--bs-muted)}
     .bs-track{background:var(--bs-line);height:6px;border-radius:999px;overflow:hidden;margin-top:9px}.bs-fill{height:100%;background:var(--bs-accent);border-radius:999px}.bs-fill.low{background:var(--bs-amber)}.bs-fill.critical{background:var(--bs-red)}
     .bs-entityid{font-size:10px;color:var(--bs-muted);margin-top:3px;overflow-wrap:anywhere}
-    @container (max-width:390px){.bs-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.bs-tile{min-height:143px;padding:9px 9px 10px;gap:6px}.bs-tile-symbol{width:34px;height:34px}.bs-tile .bs-icon{width:19px;height:19px;--mdc-icon-size:19px}.bs-tile .bs-name{font-size:12px;line-height:1.3}.bs-tile .bs-sub{font-size:11px;line-height:1.3}.bs-tile .bs-min{font-size:10px;padding-top:6px}.bs-tile .bs-min strong{font-size:11px}}
-    @container (max-width:360px){.bs-shell{padding:13px}.bs-title{font-size:23px}}
+    @container (max-width:390px){.bs-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.bs-tile{min-height:100px;padding:9px;gap:6px}.bs-tile-symbol{width:30px;height:30px}.bs-tile .bs-icon{width:18px;height:18px;--mdc-icon-size:18px}.bs-tile .bs-name{font-size:12px;line-height:1.25}.bs-tile .bs-sub{font-size:11px;line-height:1.25}.bs-tile .bs-min strong{font-size:12px}}
+    @container (max-width:360px){.bs-shell{padding:13px}.bs-title{font-size:23px}.bs-metric-value{font-size:25px}.bs-tile{padding:8px}}
     .bs-container{display:block;width:100%;max-width:100%;min-width:0;container-type:inline-size}
     @media(max-width:440px){.bs-shell{padding:13px}}
     @media(max-width:599px){.bs-backdrop{padding:max(20px,env(safe-area-inset-top)) 18px max(20px,env(safe-area-inset-bottom))}.bs-dialog{width:min(350px,100%);max-height:min(68vh,560px);max-height:min(68dvh,560px);border-radius:24px;padding:18px}}
@@ -279,11 +283,11 @@
           const alertText=st.low?`${st.low} in allerta`:st.unavailable?`${st.unavailable} non disponibil${st.unavailable===1?'e':'i'}`:'';
           const short=`${countText}${alertText?' · '+alertText:''}`;
           const statusName=level==='normal'?'Batterie regolari':level==='low'?'Batterie in allerta':level==='critical'?'Batterie critiche':level==='unavailable'?'Stati non disponibili':'Nessun dispositivo';
-          return `<button class="bs-tile" type="button" data-category="${esc(s.id)}" aria-label="${esc(s.name)}: ${esc(short)}. ${esc(statusName)}. Apri dettagli.">
-            <div class="bs-tilehead"><span class="bs-tile-symbol">${icon(s.icon)}</span><span class="bs-tile-state ${level}" title="${esc(statusName)}">${icon(stateIcon)}</span></div>
-            <div class="bs-tile-caption"><span class="bs-name">${esc(s.name)}</span><span class="bs-sub">${esc(countText)}</span>${alertText?`<span class="bs-sub ${st.critical?'critical':st.low?'low':''}">${esc(alertText)}</span>`:''}</div>
-            <div class="bs-min ${minState}">${minimum===null?'Percentuale minima non disponibile':`Batteria minima: <strong>${Number(minimum.toFixed(1))}%</strong>`}
-              ${minimum!==null?`<div class="bs-mini-track"><div class="bs-mini-fill ${minState}" style="width:${minimum}%"></div></div>`:''}</div>
+          return `<button class="bs-tile" type="button" data-category="${esc(s.id)}" aria-label="${esc(s.name)}: ${esc(short)}. ${minimum===null?'Percentuale minima non disponibile':'Batteria minima '+Number(minimum.toFixed(1))+'%'}. ${esc(statusName)}. Apri dettagli.">
+            <div class="bs-tilehead"><span class="bs-tile-symbol">${icon(s.icon)}</span><span class="bs-name">${esc(s.name)}</span><span class="bs-tile-state ${level}" title="${esc(statusName)}">${icon(stateIcon)}</span></div>
+            <div class="bs-tile-data"><span class="bs-sub">${esc(countText)}</span><span class="bs-min ${minState}" title="${minimum===null?'Percentuale minima non disponibile':'Batteria minima: '+Number(minimum.toFixed(1))+'%'}">${minimum===null?'—':`<strong>${Number(minimum.toFixed(1))}%</strong>`}</span></div>
+            ${alertText?`<span class="bs-tile-warning ${st.critical?'critical':st.low?'low':''}">${esc(alertText)}</span>`:''}
+            ${minimum!==null?`<div class="bs-mini-track"><div class="bs-mini-fill ${minState}" style="width:${minimum}%"></div></div>`:''}
             </button>`;
         }).join('')}</div>`:'<div class="bs-empty">Nessuna sezione visibile: usa l’editor della card per aggiungerla.</div>'}
         <button class="bs-details" type="button" data-details="1" aria-haspopup="dialog" aria-expanded="${this._dialog==='__all__'}"><span class="bs-details-label">${icon('mdi:format-list-bulleted')} Dettagli batterie</span>${icon('mdi:chevron-right')}</button>
