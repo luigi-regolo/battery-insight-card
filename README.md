@@ -1,8 +1,8 @@
 # Battery Insight Card
 
-[![TikTok | Segui](assets/tiktok-segui.svg)](https://www.tiktok.com/@luigi.regolo)
+[![HACS Default](https://img.shields.io/badge/HACS-Default-41BDF5?style=flat-square)](https://my.home-assistant.io/redirect/hacs_repository/?owner=luigi-regolo&repository=battery-insight-card&category=plugin)
+[![Release](https://img.shields.io/github/v/release/luigi-regolo/battery-insight-card?label=Release&style=flat-square)](https://github.com/luigi-regolo/battery-insight-card/releases/latest)
 [![License: GPL-3.0-only](https://img.shields.io/badge/license-GPL--3.0--only-blue?style=flat-square)](LICENSE)
-[![HACS Repository](https://img.shields.io/badge/HACS-Repository-41BDF5?style=flat-square)](https://my.home-assistant.io/redirect/hacs_repository/?owner=luigi-regolo&repository=battery-insight-card&category=plugin)
 [![GitHub Stars](https://img.shields.io/github/stars/luigi-regolo/battery-insight-card?style=flat-square)](https://github.com/luigi-regolo/battery-insight-card/stargazers)
 
 ## Overview
@@ -15,7 +15,13 @@ The card uses Home Assistant entities already configured in the user's installat
 
 ## Preview
 
-![Battery Insight Card Preview](assets/preview-main.png)
+| Light | Dark |
+| --- | --- |
+| ![Battery Insight Card in Light mode](assets/battery-insight-card-light.png) | ![Battery Insight Card in Dark mode](assets/battery-insight-card-dark.png) |
+
+![Battery Insight Card details popup, Light mode](assets/battery-insight-card-popup-light.png)
+
+*Previews use fictional demo data. The interface text is currently in Italian.*
 
 ## Features
 
@@ -35,14 +41,29 @@ Unknown and unavailable battery states are kept separate from confirmed healthy 
 
 ## Installation
 
-### HACS
+### HACS (Recommended)
+
+Install Battery Insight Card directly from the default HACS catalog.
 
 [![Open Battery Insight Card in HACS](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=luigi-regolo&repository=battery-insight-card&category=plugin)
 
-1. Open the HACS link above in Home Assistant.
-2. Follow the prompts to add the repository, if requested, and download **Battery Insight Card** through HACS.
-3. Reload the Home Assistant dashboard if necessary.
-4. Add **Battery Insight Card** to your dashboard and configure it through the visual editor.
+1. Open **HACS** in Home Assistant.
+2. Search for **Battery Insight Card**.
+3. Select **Battery Insight Card** from the results.
+4. Click **Download** to install the card.
+5. Reload your dashboard if necessary.
+6. Add **Battery Insight Card** to your dashboard and configure it using the visual editor.
+
+To install a specific release, use **Download** or **Redownload** and select the desired version when available.
+
+### Alternative: Custom repository
+
+If you prefer to add the repository manually:
+
+1. Open **HACS** and select **Custom repositories** from the menu.
+2. Enter `https://github.com/luigi-regolo/battery-insight-card`.
+3. Select **Dashboard** as the repository type and add it.
+4. Find **Battery Insight Card** in HACS and download it.
 
 ### Manual installation
 
@@ -78,6 +99,10 @@ Battery Insight Card requires Home Assistant with support for custom JavaScript 
 Numeric battery data must be provided by a compatible percentage sensor. A `binary_sensor` with `device_class: battery` can report low or normal battery status without a percentage.
 
 No specific minimum Home Assistant version has been independently verified. The card does not depend on an external cloud service, remote JavaScript library, or installation of the Edera theme.
+
+## Releases
+
+See [GitHub Releases](https://github.com/luigi-regolo/battery-insight-card/releases) for published versions.
 
 ## Copyright & License
 
