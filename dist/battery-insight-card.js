@@ -107,7 +107,8 @@
     .bs-heading{font-size:10px;font-weight:700;letter-spacing:1.3px;color:var(--bs-muted);margin:14px 4px 8px;text-transform:uppercase}
     .bs-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));grid-auto-rows:1fr;gap:var(--bs-gap)}
     .bs-tile{display:flex;flex-direction:column;gap:7px;min-width:0;min-height:88px;text-align:left;align-items:stretch;padding:10px 12px;border:1px solid var(--bs-line);border-radius:20px;background:var(--bs-tile)}
-    .bs-tile:hover{border-color:color-mix(in srgb,var(--bs-accent) 60%,var(--bs-line))}
+    .bs-tile:focus-visible{outline:2px solid color-mix(in srgb,var(--bs-text) 55%,transparent);outline-offset:2px}
+    .bs-tile:active{background:color-mix(in srgb,var(--bs-text) 6%,var(--bs-tile))}
     .bs-tilehead{display:flex;align-items:center;gap:8px;min-width:0}
     .bs-tile-symbol{flex:none;width:var(--bs-sym);height:var(--bs-sym);border-radius:50%;background:var(--bs-circle);display:inline-flex;align-items:center;justify-content:center;color:var(--bs-text)}
     .bs-tile-symbol .bs-icon{width:18px;height:18px;--mdc-icon-size:18px}
