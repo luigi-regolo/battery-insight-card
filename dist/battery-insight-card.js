@@ -1,5 +1,5 @@
 /*
- * Battery Insight Card 1.3
+ * Battery Insight Card 1.4
  * Copyright (c) 2026 luigi-regolo
  * SPDX-License-Identifier: GPL-3.0-only
  */
@@ -95,7 +95,7 @@
     .bs-shell{padding:var(--bs-pad);border:1px solid var(--bs-line);background:var(--bs-bg);border-radius:26px;min-width:0}
     .bs-eyebrow{font-size:10px;font-weight:750;letter-spacing:1.7px;color:var(--bs-muted);text-transform:uppercase}
     .bs-title{margin-top:7px;margin-bottom:12px;font-size:25px;line-height:1.14;font-weight:780;letter-spacing:-.7px;overflow-wrap:anywhere}
-    .bs-title b{color:var(--bs-ok)}
+    .bs-title b{color:var(--bs-accent);font-weight:800}
     .bs-metrics{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--bs-gap)}
     .bs-metric{background:var(--bs-tile);border:1px solid var(--bs-line);border-radius:18px;padding:11px 12px;min-width:0}
     .bs-metric-label{font-size:12px;color:var(--bs-muted);line-height:1.35}
@@ -124,10 +124,9 @@
     .bs-mini-track{height:4px;width:100%;background:var(--bs-line);border-radius:50px;overflow:hidden;margin-top:auto}
     .bs-mini-fill{height:100%;background:var(--bs-ok);border-radius:50px}
     .bs-mini-fill.low{background:var(--bs-amber)}.bs-mini-fill.critical{background:var(--bs-red)}
-    /* Pulsante a pillola «Dettagli e stato», stesso stile di Weather Pulse e Entity Health. */
-    .bs-details{display:flex;align-items:center;justify-content:space-between;gap:10px;width:100%;min-width:0;min-height:40px;padding:0 16px;margin-top:12px;border-radius:999px;font-weight:600;font-size:13.5px;text-align:left;color:var(--bs-btn);border:1px solid color-mix(in srgb,var(--bs-accent) 45%,transparent);background:color-mix(in srgb,var(--bs-accent) 12%,transparent)}
+    /* Pulsante a pillola «Dettagli e statistiche», stesso stile di Energy Scope (etichetta e chevron centrati). */
+    .bs-details{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;min-width:0;min-height:40px;padding:0 16px;margin-top:12px;border-radius:999px;font-weight:600;font-size:13.5px;text-align:center;color:var(--bs-btn);border:1px solid color-mix(in srgb,var(--bs-accent) 45%,transparent);background:color-mix(in srgb,var(--bs-accent) 12%,transparent)}
     .bs-details:hover,.bs-details[aria-expanded="true"]{background:color-mix(in srgb,var(--bs-accent) 22%,transparent)}
-    .bs-details-label{display:inline-flex;align-items:center;gap:8px;min-width:0}
     .bs-details .bs-icon{width:18px;height:18px;--mdc-icon-size:18px}
     .bs-empty{padding:16px;color:var(--bs-muted);font-size:12px;text-align:center}
     @container (max-width:560px){.bs-container{--bs-pad:14px}.bs-title{font-size:23px}.bs-metric-value{font-size:27px}}
@@ -309,7 +308,7 @@
             <div class="bs-mini-track">${minimum!==null?`<div class="bs-mini-fill ${minState}" style="width:${minimum}%"></div>`:''}</div>
             </button>`;
         }).join('')}</div>`:'<div class="bs-empty">Nessuna sezione visibile: usa l’editor della card per aggiungerla.</div>'}
-        <button class="bs-details" type="button" data-details="1" aria-haspopup="dialog" aria-expanded="${this._dialog==='__all__'}"><span class="bs-details-label">${icon('mdi:format-list-bulleted')} Dettagli e stato</span>${icon('mdi:chevron-right')}</button>
+        <button class="bs-details" type="button" data-details="1" aria-haspopup="dialog" aria-expanded="${this._dialog==='__all__'}">Dettagli e statistiche ${icon('mdi:chevron-right')}</button>
       </div></div>${this._dialog?this._popup(sections):''}`;
       const body=this.shadowRoot.querySelector('.bs-mbody');if(body)body.scrollTop=previousScroll;
       this._setModalScrollLock(Boolean(body));
