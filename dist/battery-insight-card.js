@@ -1,5 +1,5 @@
 /*
- * Battery Insight Card 1.2
+ * Battery Insight Card 1.3
  * Copyright (c) 2026 luigi-regolo
  * SPDX-License-Identifier: GPL-3.0-only
  */
