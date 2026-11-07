@@ -1,5 +1,5 @@
 /*
- * Battery Insight Card 1.1
+ * Battery Insight Card 1.2
  * Copyright (c) 2026 luigi-regolo
  * SPDX-License-Identifier: GPL-3.0-only
  */
@@ -86,93 +86,87 @@
   const CARD_CSS=`
     :host{display:block;min-width:0;font-family:var(--ha-font-family-body,var(--paper-font-body1_-_font-family,Roboto,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif));color:var(--bs-text);font-size:14px}
     *,*:before,*:after{box-sizing:border-box}
-    :host([data-theme=light]){--bs-bg:#fafbf9;--bs-tile:#f0f2ef;--bs-circle:#fff;--bs-line:#e0e5df;--bs-text:#18221c;--bs-muted:#56675c;--bs-accent:var(--edera-emerald-color,#0E6B52);--bs-red:#ae4742;--bs-amber:#ad701c}
-    :host([data-theme=dark]){--bs-bg:#101211;--bs-tile:#191c1a;--bs-circle:#282b29;--bs-line:#2b302c;--bs-text:#f5f7f4;--bs-muted:#bbc5bd;--bs-accent:var(--edera-emerald-color,#0E6B52);--bs-red:#f17878;--bs-amber:#efb45f}
+    :host([data-theme=light]){--bs-bg:#fafbf9;--bs-tile:#f0f2ef;--bs-circle:#fff;--bs-line:#e0e5df;--bs-text:#18221c;--bs-muted:#56675c;--bs-accent:var(--edera-emerald-color,#0E6B52);--bs-ok:var(--bs-accent);--bs-btn:var(--bs-accent);--bs-red:#ae4742;--bs-amber:#ad701c}
+    :host([data-theme=dark]){--bs-bg:#101211;--bs-tile:#191c1a;--bs-circle:#282b29;--bs-line:#2b302c;--bs-text:#f5f7f4;--bs-muted:#bbc5bd;--bs-accent:#0e795d;--bs-ok:#3fbf94;--bs-btn:var(--bs-text);--bs-red:#f17878;--bs-amber:#efb45f}
     button{font:inherit;cursor:pointer;color:inherit;-webkit-tap-highlight-color:transparent}
-    button:focus-visible{outline:2px solid var(--bs-accent);outline-offset:3px}
+    button:focus-visible{outline:2px solid var(--bs-accent);outline-offset:2px}
     .bs-icon{height:21px;width:21px;--mdc-icon-size:21px;flex:none;display:inline-flex;align-items:center;justify-content:center}
-    .bs-shell{padding:18px;border:1px solid var(--bs-line);background:var(--bs-bg);border-radius:26px;min-width:0}
-    .bs-header{margin:2px 4px 12px}.bs-eyebrow{font-size:10px;font-weight:750;letter-spacing:1.7px;color:var(--bs-muted);margin-bottom:7px;text-transform:uppercase}
-    .bs-title{font-size:25px;line-height:1.14;font-weight:780;letter-spacing:-.7px;overflow-wrap:anywhere}
-    .bs-title b{color:var(--bs-accent)}
-    .bs-row{border-radius:24px;border:1px solid var(--bs-line);padding:12px;background:var(--bs-tile);margin-top:9px}
-    .bs-metrics{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-top:8px}
-    .bs-metric{background:var(--bs-tile);border:1px solid var(--bs-line);border-radius:18px;padding:10px;min-width:0}
-    .bs-metric-label{font-size:11px;color:var(--bs-muted);line-height:1.4}
-    .bs-metric-value{font-size:29px;line-height:1.15;font-weight:650;letter-spacing:-.7px;margin:4px 0 2px;font-variant-numeric:tabular-nums}
-    .bs-metric-value.low{color:var(--bs-red)}
-    .bs-metric-detail{font-size:11px;color:var(--bs-muted);line-height:1.4}
-    .bs-metric-track{height:5px;background:var(--bs-line);overflow:hidden;border-radius:99px;margin:6px 0 2px}
-    .bs-metric-fill{height:100%;background:var(--bs-accent);border-radius:99px}
-
-    .bs-intro{display:flex;align-items:center;flex-wrap:wrap;gap:11px}.bs-orb{width:43px;height:43px;flex:none;border-radius:50%;background:var(--bs-circle);display:grid;place-items:center}
-    .bs-main{flex:1;min-width:0}.bs-name{font-size:14px;font-weight:650;line-height:1.3}.bs-sub{font-size:12px;color:var(--bs-muted);margin-top:3px;line-height:1.45}
-    .bs-alert{display:flex;align-items:center;gap:6px;margin-left:auto;font-weight:700;font-size:12px;color:var(--bs-amber)}
-    .bs-alert.is-ok{color:var(--bs-accent)}.bs-alert.is-critical{color:var(--bs-red)}
-    .bs-heading{font-size:10px;font-weight:700;letter-spacing:1.3px;color:var(--bs-muted);margin:13px 4px 8px;text-transform:uppercase}
-    .bs-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));grid-auto-rows:1fr;gap:12px}
-    .bs-tile{display:flex;min-width:0;min-height:98px;flex-direction:column;gap:6px;text-align:left;align-items:stretch;padding:9px 10px;border:1px solid var(--bs-line);border-radius:24px;background:var(--bs-tile)}
-    .bs-tilehead{display:flex;align-items:center;gap:9px;min-width:0}.bs-tile .bs-orb{width:41px;height:41px}.bs-tile .bs-icon{height:22px;width:22px;--mdc-icon-size:22px}
-    .bs-tiletext{flex:1;min-width:0}.bs-tile .bs-name{font-size:13px;overflow-wrap:anywhere}.bs-tile .bs-sub{font-size:11.5px;overflow-wrap:anywhere}
-    /* Security Panel geometry, compact visual states as in approved category grid. */
-    .bs-grid{gap:8px}
-    .bs-tile{min-height:100px;padding:10px 11px;border-radius:20px;gap:7px}
-    .bs-tilehead{justify-content:flex-start;min-height:30px;align-items:center;gap:7px}
-    .bs-tile .bs-icon{width:18px;height:18px;--mdc-icon-size:18px}
-    .bs-tile-symbol{display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:50%;background:var(--bs-circle);color:var(--bs-text);flex:none}
-    .bs-tile-state{display:inline-flex;align-items:center;justify-content:center;min-height:22px;min-width:20px;flex:none;margin-left:auto;color:var(--bs-muted)}
-    .bs-tile-state.normal{color:var(--bs-accent)}
-    .bs-tile-state.low{color:var(--bs-amber)}
-    .bs-tile-state.critical{color:var(--bs-red)}
-    .bs-tile-caption{display:flex;flex-direction:column;align-items:flex-start;min-width:0;gap:5px;margin-top:2px;line-height:1.35}
-    .bs-tile .bs-name{display:block;flex:1;min-width:0;font-size:12px;font-weight:650;line-height:1.25;overflow-wrap:anywhere}
-    .bs-tile .bs-sub{display:block;min-width:0;font-size:11px;line-height:1.25;margin:0;color:var(--bs-muted);overflow-wrap:anywhere}
-    .bs-tile .bs-sub.low{color:var(--bs-amber)}
-    .bs-tile .bs-sub.critical{color:var(--bs-red)}
-    .bs-min{font-size:11px;line-height:1.25;color:var(--bs-muted);flex:none;text-align:right;white-space:nowrap}
-    .bs-min strong{font-size:12px;font-weight:600;letter-spacing:-.2px;color:var(--bs-text);font-variant-numeric:tabular-nums}
-    .bs-min.low strong{color:var(--bs-amber)}
-    .bs-min.critical strong{color:var(--bs-red)}
+    .bs-container{display:block;width:100%;max-width:100%;min-width:0;container-type:inline-size;--bs-pad:18px;--bs-gap:10px;--bs-sym:34px}
+    .bs-shell{padding:var(--bs-pad);border:1px solid var(--bs-line);background:var(--bs-bg);border-radius:26px;min-width:0}
+    .bs-eyebrow{font-size:10px;font-weight:750;letter-spacing:1.7px;color:var(--bs-muted);text-transform:uppercase}
+    .bs-title{margin-top:7px;margin-bottom:12px;font-size:25px;line-height:1.14;font-weight:780;letter-spacing:-.7px;overflow-wrap:anywhere}
+    .bs-title b{color:var(--bs-ok)}
+    .bs-metrics{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--bs-gap)}
+    .bs-metric{background:var(--bs-tile);border:1px solid var(--bs-line);border-radius:18px;padding:11px 12px;min-width:0}
+    .bs-metric-label{font-size:12px;color:var(--bs-muted);line-height:1.35}
+    .bs-metric-value{font-size:30px;line-height:1.1;font-weight:700;letter-spacing:-.7px;margin:4px 0 6px;font-variant-numeric:tabular-nums}
+    .bs-metric-value.low{color:var(--bs-amber)}.bs-metric-value.critical{color:var(--bs-red)}
+    .bs-metric-track{height:5px;background:var(--bs-line);overflow:hidden;border-radius:99px;margin:0 0 6px}
+    .bs-metric-fill{height:100%;background:var(--bs-ok);border-radius:99px}
+    .bs-metric-detail{font-size:11.5px;color:var(--bs-muted);line-height:1.35;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+    .bs-heading{font-size:10px;font-weight:700;letter-spacing:1.3px;color:var(--bs-muted);margin:14px 4px 8px;text-transform:uppercase}
+    .bs-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));grid-auto-rows:1fr;gap:var(--bs-gap)}
+    .bs-tile{display:flex;flex-direction:column;gap:7px;min-width:0;min-height:88px;text-align:left;align-items:stretch;padding:10px 12px;border:1px solid var(--bs-line);border-radius:20px;background:var(--bs-tile)}
+    .bs-tile:hover{border-color:color-mix(in srgb,var(--bs-accent) 60%,var(--bs-line))}
+    .bs-tilehead{display:flex;align-items:center;gap:8px;min-width:0}
+    .bs-tile-symbol{flex:none;width:var(--bs-sym);height:var(--bs-sym);border-radius:50%;background:var(--bs-circle);display:inline-flex;align-items:center;justify-content:center;color:var(--bs-text)}
+    .bs-tile-symbol .bs-icon{width:18px;height:18px;--mdc-icon-size:18px}
+    .bs-name{flex:1;min-width:0;font-size:13px;font-weight:650;line-height:1.25;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;overflow-wrap:anywhere}
+    .bs-tile-state{flex:none;display:inline-flex;align-items:center;justify-content:center;color:var(--bs-muted)}
+    .bs-tile-state .bs-icon{width:20px;height:20px;--mdc-icon-size:20px}
+    .bs-tile-state.normal{color:var(--bs-ok)}.bs-tile-state.low{color:var(--bs-amber)}.bs-tile-state.critical{color:var(--bs-red)}
+    .bs-tile-data{display:flex;align-items:baseline;justify-content:space-between;gap:6px;min-width:0;font-size:12px;color:var(--bs-muted)}
+    .bs-sub{min-width:0;overflow-wrap:anywhere;line-height:1.35}
+    .bs-sub em{display:block;font-style:normal;font-weight:600}.bs-sub em.low{color:var(--bs-amber)}.bs-sub em.critical{color:var(--bs-red)}
+    .bs-min{flex:none;font-size:13px;font-weight:650;color:var(--bs-text);font-variant-numeric:tabular-nums}
+    .bs-min.low{color:var(--bs-amber)}.bs-min.critical{color:var(--bs-red)}
     .bs-mini-track{height:4px;width:100%;background:var(--bs-line);border-radius:50px;overflow:hidden;margin-top:auto}
-    .bs-mini-fill{height:100%;background:var(--bs-accent);border-radius:50px}
-    .bs-mini-fill.low{background:var(--bs-amber)}
-    .bs-mini-fill.critical{background:var(--bs-red)}
-    .bs-tile-data{display:flex;align-items:baseline;justify-content:space-between;gap:5px;min-width:0}
-    .bs-tile-data .bs-sub{min-width:0;flex:1}
-    .bs-tile-warning{font-size:11px;line-height:1.25;color:var(--bs-muted);overflow-wrap:anywhere}
-    .bs-tile-warning.low{color:var(--bs-amber)}.bs-tile-warning.critical{color:var(--bs-red)}
-    @container (max-width:360px){.bs-tile{padding:8px;min-height:100px}.bs-tile .bs-name{font-size:12px}}
-    .bs-chevron{color:var(--bs-muted)}.bs-pill{margin-top:auto;display:inline-flex;align-items:center;gap:5px;width:fit-content;max-width:100%;min-width:0;padding:5px 9px;font-size:11px;font-weight:650;border-radius:999px;background:var(--bs-circle);color:var(--bs-text)}
-    .bs-pill .bs-icon{height:14px;width:14px;--mdc-icon-size:14px}.bs-pill.low{color:var(--bs-amber)}.bs-pill.critical{color:var(--bs-red)}
-    .bs-details{display:flex;align-items:center;justify-content:space-between;width:100%;min-width:0;gap:12px;min-height:42px;padding:10px 14px;margin-top:10px;border:1px solid var(--bs-accent);border-radius:16px;background:var(--bs-accent);color:#fff;text-align:left;font-weight:650;font-size:12px}.bs-details[aria-expanded="true"],.bs-details:hover{background:var(--bs-accent);color:#fff}.bs-details-label{display:inline-flex;align-items:center;gap:8px;min-width:0}.bs-details-label .bs-icon{display:inline-flex;align-items:center;justify-content:center}
-    .bs-details .bs-icon{width:17px;height:17px;--mdc-icon-size:17px}
+    .bs-mini-fill{height:100%;background:var(--bs-ok);border-radius:50px}
+    .bs-mini-fill.low{background:var(--bs-amber)}.bs-mini-fill.critical{background:var(--bs-red)}
+    /* Pulsante a pillola «Dettagli e stato», stesso stile di Weather Pulse e Entity Health. */
+    .bs-details{display:flex;align-items:center;justify-content:space-between;gap:10px;width:100%;min-width:0;min-height:40px;padding:0 16px;margin-top:12px;border-radius:999px;font-weight:600;font-size:13.5px;text-align:left;color:var(--bs-btn);border:1px solid color-mix(in srgb,var(--bs-accent) 45%,transparent);background:color-mix(in srgb,var(--bs-accent) 12%,transparent)}
+    .bs-details:hover,.bs-details[aria-expanded="true"]{background:color-mix(in srgb,var(--bs-accent) 22%,transparent)}
+    .bs-details-label{display:inline-flex;align-items:center;gap:8px;min-width:0}
+    .bs-details .bs-icon{width:18px;height:18px;--mdc-icon-size:18px}
     .bs-empty{padding:16px;color:var(--bs-muted);font-size:12px;text-align:center}
-    .bs-backdrop{position:fixed;inset:0;z-index:9999;background:#0009;display:grid;place-items:center;overflow:hidden;overscroll-behavior:none;padding:max(24px,env(safe-area-inset-top)) 24px max(24px,env(safe-area-inset-bottom))}
-    .bs-dialog{background:var(--bs-bg);color:var(--bs-text);border:1px solid var(--bs-line);border-radius:26px;display:block;padding:20px;width:min(390px,100%);max-width:100%;min-width:0;max-height:min(82vh,720px);max-height:min(82dvh,720px);box-shadow:0 18px 60px #0005;overflow-y:auto;overflow-x:hidden;overscroll-behavior:contain;-webkit-overflow-scrolling:touch}
-    .bs-dialog-head{display:flex;align-items:center;justify-content:space-between;gap:10px;min-height:38px;margin-bottom:10px;padding:0}
-    .bs-dialog-head strong{display:block;font-size:17px;font-weight:600;line-height:1.3}.bs-dialog-titles{min-width:0;flex:1}.bs-dialog-titles span{display:block;margin-top:4px;font-size:12px;color:var(--bs-muted)}.bs-close{display:flex;align-items:center;justify-content:center;border:0;border-radius:50%;background:var(--bs-tile);width:36px;height:36px;flex:none;line-height:0;padding:0}.bs-close .bs-icon{display:block;width:18px;height:18px;--mdc-icon-size:18px;flex:none}
-    .bs-dialog-body{padding:0;overflow:visible;min-height:0}
-    .bs-stats{display:flex;flex-wrap:wrap;gap:9px;margin:0 0 18px}.bs-stat{border:1px solid var(--bs-line);border-radius:17px;padding:10px 13px;background:var(--bs-tile);font-size:12px;white-space:nowrap}
-    .bs-stat b{font-size:14px;font-weight:650;font-variant-numeric:tabular-nums}.bs-filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:21px}.bs-popup-heading{font-size:13px;font-weight:650;line-height:1.4;margin:7px 0 12px}
-    .bs-filter{border:1px solid var(--bs-line);border-radius:999px;padding:10px 15px;min-height:39px;background:var(--bs-tile);font-size:12px;line-height:1.2}.bs-filter.selected{background:var(--bs-accent);color:#fff;border-color:var(--bs-accent)}.bs-filter:focus-visible{outline:2px solid var(--bs-accent);outline-offset:2px}
-    .bs-entry{padding:13px 14px;background:var(--bs-tile);border:1px solid var(--bs-line);border-radius:17px;margin-bottom:9px}.bs-entry:last-child{margin-bottom:0}
-    .bs-entrytop{display:flex;align-items:center;justify-content:space-between;gap:12px}.bs-entryidentity{display:flex;align-items:center;gap:9px;min-width:0;flex:1}.bs-entryidentity .bs-icon{width:21px;height:21px;--mdc-icon-size:21px}.bs-entryname{font-size:13px;line-height:1.35;font-weight:650;min-width:0;overflow-wrap:anywhere}.bs-entry-status{margin:6px 0 0 30px;color:var(--bs-muted);font-size:11px}.bs-entry-status.low{color:var(--bs-amber)}.bs-entry-status.critical{color:var(--bs-red)}
-    .bs-pct{font-weight:650;letter-spacing:-.2px;font-variant-numeric:tabular-nums;white-space:nowrap;font-size:13px}.bs-pct.low{color:var(--bs-amber)}.bs-pct.critical{color:var(--bs-red)}.bs-pct.unavailable{color:var(--bs-muted)}
-    .bs-track{background:var(--bs-line);height:6px;border-radius:999px;overflow:hidden;margin-top:9px}.bs-fill{height:100%;background:var(--bs-accent);border-radius:999px}.bs-fill.low{background:var(--bs-amber)}.bs-fill.critical{background:var(--bs-red)}
-    .bs-entityid{font-size:10px;color:var(--bs-muted);margin-top:3px;overflow-wrap:anywhere}
-    @container (max-width:390px){.bs-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.bs-tile{min-height:100px;padding:9px;gap:6px}.bs-tile-symbol{width:30px;height:30px}.bs-tile .bs-icon{width:18px;height:18px;--mdc-icon-size:18px}.bs-tile .bs-name{font-size:12px;line-height:1.25}.bs-tile .bs-sub{font-size:11px;line-height:1.25}.bs-tile .bs-min strong{font-size:12px}}
-    @container (max-width:360px){.bs-shell{padding:13px}.bs-title{font-size:23px}.bs-metric-value{font-size:25px}.bs-tile{padding:8px}}
-    .bs-container{display:block;width:100%;max-width:100%;min-width:0;container-type:inline-size}
-    @media(max-width:440px){.bs-shell{padding:13px}}
-    @media(max-width:599px){.bs-backdrop{padding:max(20px,env(safe-area-inset-top)) 18px max(20px,env(safe-area-inset-bottom))}.bs-dialog{width:min(350px,100%);max-height:min(68vh,560px);max-height:min(68dvh,560px);border-radius:24px;padding:18px}}
-    @media(max-height:480px){.bs-dialog{max-height:calc(100vh - 32px);max-height:calc(100dvh - 32px)}}
+    @container (max-width:560px){.bs-container{--bs-pad:14px}.bs-title{font-size:23px}.bs-metric-value{font-size:27px}}
+    @container (max-width:400px){.bs-container{--bs-pad:12px;--bs-gap:8px;--bs-sym:32px}.bs-shell{border-radius:23px}.bs-tile{padding:9px 10px}.bs-tilehead{flex-wrap:wrap;row-gap:6px}.bs-tile-symbol{order:1}.bs-tile-state{order:2;margin-left:auto}.bs-name{order:3;flex:1 1 100%;font-size:12.5px}.bs-tile-data{font-size:11.5px}.bs-metric-label,.bs-metric-detail{font-size:11.5px}.bs-metric-value{font-size:25px}}
+    @container (max-width:270px){.bs-grid,.bs-metrics{grid-template-columns:1fr}}
+    /* Popup: modello Entity Health Card (intestazione fissa e opaca, solo l'elenco scorre). */
+    .bs-backdrop{position:fixed;inset:0;z-index:9999;background:#0009;display:flex;align-items:center;justify-content:center;overscroll-behavior:contain;padding:max(16px,env(safe-area-inset-top)) max(16px,env(safe-area-inset-right)) max(16px,env(safe-area-inset-bottom)) max(16px,env(safe-area-inset-left))}
+    .bs-modal{width:min(390px,100%);max-height:min(88vh,680px);max-height:min(88dvh,680px);display:flex;flex-direction:column;background:var(--bs-bg);color:var(--bs-text);border:1px solid var(--bs-line);border-radius:26px;overflow:hidden;box-shadow:0 18px 60px #0005}
+    .bs-mhead{flex:none;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:16px 16px 12px 18px;background:var(--bs-bg);border-bottom:1px solid var(--bs-line)}
+    .bs-mtitles{flex:1;min-width:0}.bs-mtitle{margin:0;font-size:17px;font-weight:600;line-height:1.3;overflow-wrap:anywhere}.bs-msub{font-size:12px;color:var(--bs-muted);margin-top:2px;overflow-wrap:anywhere}
+    .bs-close{flex:none;display:grid;place-items:center;width:40px;height:40px;padding:0;border-radius:50%;border:1px solid var(--bs-line);background:var(--bs-tile);color:var(--bs-text);line-height:0}
+    .bs-close .bs-icon{width:20px;height:20px;--mdc-icon-size:20px}
+    .bs-mbody{overflow-y:auto;overflow-x:hidden;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;padding:12px 18px 18px;min-width:0}
+    .bs-stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-bottom:12px}
+    .bs-stat{background:var(--bs-tile);border-radius:16px;padding:10px 12px;min-width:0}
+    .bs-stat b{display:block;font-size:22px;font-weight:700;line-height:1.1;font-variant-numeric:tabular-nums}.bs-stat.low b{color:var(--bs-amber)}
+    .bs-stat span{display:block;font-size:11.5px;color:var(--bs-muted);margin-top:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .bs-filters{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px}
+    .bs-filter{font-size:12.5px;padding:6px 11px;min-height:32px;border-radius:999px;border:1px solid var(--bs-line);background:var(--bs-tile);color:var(--bs-text)}
+    .bs-filter[aria-pressed="true"]{background:color-mix(in srgb,var(--bs-accent) 14%,transparent);border-color:var(--bs-accent);font-weight:600}
+    .bs-gh{display:flex;justify-content:space-between;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--bs-muted);font-weight:600;margin:14px 2px 6px}.bs-gh:first-of-type{margin-top:4px}
+    .bs-list{display:grid;gap:8px}
+    .bs-entry{display:grid;grid-template-columns:36px minmax(0,1fr) auto;gap:10px;align-items:center;background:var(--bs-tile);border-radius:16px;padding:10px 12px;min-width:0}
+    .bs-eico{width:36px;height:36px;border-radius:50%;display:grid;place-items:center;background:var(--bs-circle);color:var(--bs-muted)}
+    .bs-eico .bs-icon{width:19px;height:19px;--mdc-icon-size:19px}
+    .bs-eico.normal{color:var(--bs-ok)}.bs-eico.low{color:var(--bs-amber);box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--bs-amber) 50%,transparent)}.bs-eico.critical{color:var(--bs-red);box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--bs-red) 50%,transparent)}
+    .bs-einfo{min-width:0}.bs-entryname{display:block;font-size:14px;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+    .bs-entry-status{display:block;font-size:11.5px;color:var(--bs-muted);margin-top:1px}.bs-entry-status.low{color:var(--bs-amber)}.bs-entry-status.critical{color:var(--bs-red)}
+    .bs-pct{font-size:13px;font-weight:650;font-variant-numeric:tabular-nums;white-space:nowrap}.bs-pct.low{color:var(--bs-amber)}.bs-pct.critical{color:var(--bs-red)}.bs-pct.unavailable{color:var(--bs-muted)}
+    .bs-track{grid-column:2/-1;height:5px;background:var(--bs-line);border-radius:999px;overflow:hidden;margin-top:-2px}
+    .bs-fill{height:100%;background:var(--bs-ok);border-radius:999px}.bs-fill.low{background:var(--bs-amber)}.bs-fill.critical{background:var(--bs-red)}
+    .bs-msg{background:var(--bs-tile);border-radius:16px;padding:14px;font-size:13px;color:var(--bs-muted);text-align:center}
+    .bs-note{margin:16px 0 0;font-size:12px;color:var(--bs-muted);line-height:1.5}
     @media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;animation:none!important;transition:none!important}}
   `;
   class BatteryInsightCard extends HTMLElement {
     static getStubConfig(){const {type,...config}=normalize({});return config;}
     static getConfigElement(){return document.createElement(EDITOR);}
     constructor(){
-      super();this.attachShadow({mode:'open'});this._cfg=normalize({});this._hass=null;this._dialog=null;this._filter='all';this._signature='';this._returnFocus=null;
+      super();this.attachShadow({mode:'open'});this._cfg=normalize({});this._hass=null;this._dialog=null;this._filter='all';this._signature='';this._returnFocus=null;this._pendingFocus='';
       this._media=typeof matchMedia==='function'?matchMedia('(prefers-color-scheme: dark)'):null;
       this._appearance=()=>this._render();this._media?.addEventListener?.('change',this._appearance);
       // Temporarily intercept scroll gestures while this popup is visible.
@@ -189,11 +183,27 @@
         this._preventScrollLeak(e,deltaY,Math.abs(deltaX)>Math.abs(deltaY));
       };
       this._onModalWheel=e=>this._preventScrollLeak(e,e.deltaY);
+      // Escape and Tab are handled at document level while the popup is open, so they keep working after a click on a non-focusable area.
+      this._keysActive=false;this._onKey=e=>this._key(e);
       this.shadowRoot.addEventListener('click',e=>this._click(e));
-      this.shadowRoot.addEventListener('keydown',e=>{if(e.key==='Escape'&&this._dialog)this._close();});
     }
     connectedCallback(){this._render();}
-    disconnectedCallback(){this._setModalScrollLock(false);this._media?.removeEventListener?.('change',this._appearance);}
+    disconnectedCallback(){this._setModalScrollLock(false);this._setKeys(false);this._media?.removeEventListener?.('change',this._appearance);}
+    _setKeys(enabled){
+      if(this._keysActive===enabled)return;
+      this._keysActive=enabled;
+      if(enabled)document.addEventListener('keydown',this._onKey);else document.removeEventListener('keydown',this._onKey);
+    }
+    _key(e){
+      if(!this._dialog)return;
+      if(e.key==='Escape'){e.preventDefault();this._close();return;}
+      if(e.key!=='Tab')return;
+      const nodes=[...this.shadowRoot.querySelectorAll('.bs-modal button')];
+      if(!nodes.length)return;
+      const first=nodes[0],last=nodes[nodes.length-1],active=this.shadowRoot.activeElement;
+      if(e.shiftKey&&(active===first||!nodes.includes(active))){e.preventDefault();last.focus({preventScroll:true});}
+      else if(!e.shiftKey&&(active===last||!nodes.includes(active))){e.preventDefault();first.focus({preventScroll:true});}
+    }
     _setModalScrollLock(enabled){
       if(this._modalLockActive===enabled)return;
       this._modalLockActive=enabled;
@@ -209,13 +219,14 @@
     }
     _preventScrollLeak(event,deltaY,horizontal=false){
       if(!this._dialog||!event.cancelable)return;
-      const dialog=this.shadowRoot.querySelector('.bs-dialog');
-      if(!dialog||!event.composedPath().includes(dialog)){
+      const body=this.shadowRoot.querySelector('.bs-mbody');
+      // Only the device list may scroll: the header, the backdrop and the dashboard behind stay still.
+      if(!body||!event.composedPath().includes(body)){
         event.preventDefault();return;
       }
-      const maxScroll=Math.max(0,dialog.scrollHeight-dialog.clientHeight);
+      const maxScroll=Math.max(0,body.scrollHeight-body.clientHeight);
       // Keep the popup scrollable but stop Safari from chaining overscroll to the dashboard.
-      if(horizontal||maxScroll<=1||(deltaY<0&&dialog.scrollTop<=1)||(deltaY>0&&dialog.scrollTop>=maxScroll-1)){
+      if(horizontal||maxScroll<=1||(deltaY<0&&body.scrollTop<=1)||(deltaY>0&&body.scrollTop>=maxScroll-1)){
         event.preventDefault();
       }
     }
@@ -224,32 +235,38 @@
     getCardSize(){return Math.max(3,Math.ceil(this._cfg.sections.filter(s=>s.visible&&(!this._cfg.hide_empty||s.entities.length)).length/2)+2);}
     _theme(){if(this._cfg.theme_mode!=='auto')return this._cfg.theme_mode;if(typeof this._hass?.themes?.darkMode==='boolean')return this._hass.themes.darkMode?'dark':'light';return this._media?.matches?'dark':'light';}
     _sections(){return this._cfg.sections.filter(s=>s.visible).map(s=>({...s,items:s.entities.map(id=>battery(this._hass,id))}));}
-    _close(){const prior=this._returnFocus;this._dialog=null;this._filter='all';this._signature='';this._render();
+    _close(){const prior=this._returnFocus;this._dialog=null;this._filter='all';this._signature='';this._setKeys(false);this._render();
       const current=prior?.kind==='category'?[...this.shadowRoot.querySelectorAll('[data-category]')].find(x=>x.dataset.category===prior.id):this.shadowRoot.querySelector('[data-details]');
-      current?.focus?.();this._returnFocus=null;}
+      current?.focus?.({preventScroll:true});this._returnFocus=null;}
+    _open(dialog,returnFocus){this._returnFocus=returnFocus;this._dialog=dialog;this._filter='all';this._signature='';this._setKeys(true);this._render();this.shadowRoot.querySelector('[data-close]')?.focus({preventScroll:true});}
     _click(e){
       if(e.target.closest('[data-close]')||e.target.closest('[data-backdrop]')===e.target){this._close();return;}
-      const cat=e.target.closest('[data-category]');if(cat){this._returnFocus={kind:'category',id:cat.dataset.category};this._dialog=cat.dataset.category;this._filter='all';this._signature='';this._render();this.shadowRoot.querySelector('[data-close]')?.focus();return;}
-      const filter=e.target.closest('[data-filter]');if(filter){this._filter=filter.dataset.filter;this._signature='';this._render();return;}
-      const details=e.target.closest('[data-details]');if(details){this._returnFocus={kind:'details'};this._dialog='__all__';this._filter='all';this._signature='';this._render();this.shadowRoot.querySelector('[data-close]')?.focus();}
+      const cat=e.target.closest('[data-category]');if(cat){this._open(cat.dataset.category,{kind:'category',id:cat.dataset.category});return;}
+      const filter=e.target.closest('[data-filter]');if(filter){this._filter=filter.dataset.filter;this._signature='';this._pendingFocus=`[data-filter="${filter.dataset.filter}"]`;this._render();return;}
+      const details=e.target.closest('[data-details]');if(details){this._open('__all__',{kind:'details'});}
+    }
+    _entryHTML(b){
+      const status=classify(b,this._cfg);
+      const txt=b.kind==='percentage'?`${Number(b.value.toFixed(1))}%`:b.kind==='low'?'Bassa':b.kind==='normal'?'OK':'N/D';
+      const detail=status==='critical'?'Batteria critica':status==='low'?'Batteria scarica':status==='normal'?'Batteria regolare':'Stato non disponibile';
+      const ico=status==='critical'?'mdi:battery-alert':status==='low'?'mdi:battery-low':status==='normal'?'mdi:battery':'mdi:battery-unknown';
+      return `<div class="bs-entry"><span class="bs-eico ${status}">${icon(ico)}</span><span class="bs-einfo"><span class="bs-entryname">${esc(b.name)}</span><span class="bs-entry-status ${status}">${esc(detail)}</span></span><span class="bs-pct ${status}">${esc(txt)}</span>${b.value!==null?`<div class="bs-track"><div class="bs-fill ${status}" style="width:${b.value}%"></div></div>`:''}</div>`;
     }
     _popup(sections){
       const selected=this._dialog==='__all__'?sections:sections.filter(s=>s.id===this._dialog);
       if(!selected.length)return '';
-      const items=selected.flatMap(s=>s.items),stats=summary(items,this._cfg),title='Dettagli batterie',subtitle=this._dialog==='__all__'?'Tutti i dispositivi':selected[0].name;
-      const entries=sortItems(items,this._cfg).filter(b=>this._filter==='all'||this._filter==='unavailable'&&classify(b,this._cfg)==='unavailable'||this._filter==='low'&&['low','critical'].includes(classify(b,this._cfg)));
-      const filters=[['all','Tutti'],['low','In allerta'],['unavailable','Non disponibili']];
-      return `<div class="bs-backdrop" data-backdrop="1"><div class="bs-dialog" role="dialog" aria-modal="true" aria-label="${esc(title)}">
-        <div class="bs-dialog-head"><div class="bs-dialog-titles"><strong>${esc(title)}</strong><span>${esc(subtitle)}</span></div><button class="bs-close" type="button" data-close="1" aria-label="Chiudi">${icon('mdi:close')}</button></div>
-        <div class="bs-dialog-body"><div class="bs-popup-heading">Riepilogo dispositivi</div><div class="bs-stats"><div class="bs-stat"><b>${stats.total}</b> monitorati</div><div class="bs-stat"><b>${stats.low}</b> in allerta</div><div class="bs-stat"><b>${stats.unavailable}</b> non disponibili</div></div>
-        <div class="bs-popup-heading">Filtra dispositivi</div><div class="bs-filters">${filters.map(([key,label])=>`<button type="button" class="bs-filter ${this._filter===key?'selected':''}" data-filter="${key}" aria-pressed="${this._filter===key}">${label}</button>`).join('')}</div><div class="bs-popup-heading">Dispositivi</div>
-        ${entries.length?entries.map(b=>{
-          const status=classify(b,this._cfg);const txt=b.kind==='percentage'?`${Number(b.value.toFixed(1))}%`:b.kind==='low'?'Bassa':b.kind==='normal'?'OK':'N/D';
-          const detail=status==='critical'?'Batteria critica':status==='low'?'Batteria scarica':status==='normal'?'Batteria regolare':'Stato non disponibile';
-          return `<div class="bs-entry"><div class="bs-entrytop"><div class="bs-entryidentity">${icon('mdi:battery')}<span class="bs-entryname">${esc(b.name)}</span></div><span class="bs-pct ${status}">${esc(txt)}</span></div><div class="bs-entry-status ${status}">${esc(detail)}</div>
-            ${b.value!==null?`<div class="bs-track"><div class="bs-fill ${status}" style="width:${b.value}%"></div></div>`:''}
-            </div>`;
-        }).join(''):'<div class="bs-empty">Nessun dispositivo per questo filtro</div>'}</div></div></div>`;
+      const all=this._dialog==='__all__';
+      const items=selected.flatMap(s=>s.items),stats=summary(items,this._cfg),title='Dettagli batterie',subtitle=all?'Tutti i dispositivi':selected[0].name;
+      const keep=b=>this._filter==='all'||this._filter==='unavailable'&&classify(b,this._cfg)==='unavailable'||this._filter==='low'&&['low','critical'].includes(classify(b,this._cfg));
+      const filters=[['all','Tutti',stats.total],['low','In allerta',stats.low],['unavailable','Non disponibili',stats.unavailable]];
+      const groups=selected.map(s=>({s,rows:sortItems(s.items,this._cfg).filter(keep)})).filter(g=>g.rows.length);
+      const list=groups.length?groups.map(g=>`${all?`<div class="bs-gh"><span>${esc(g.s.name)}</span><span>${g.rows.length}</span></div>`:''}<div class="bs-list">${g.rows.map(b=>this._entryHTML(b)).join('')}</div>`).join(''):'<div class="bs-msg">Nessun dispositivo per questo filtro</div>';
+      return `<div class="bs-backdrop" data-backdrop="1"><div class="bs-modal" role="dialog" aria-modal="true" aria-labelledby="bs-mt">
+        <div class="bs-mhead"><div class="bs-mtitles"><h2 class="bs-mtitle" id="bs-mt">${esc(title)}</h2><div class="bs-msub">${esc(subtitle)}</div></div><button class="bs-close" type="button" data-close="1" aria-label="Chiudi">${icon('mdi:close')}</button></div>
+        <div class="bs-mbody"><div class="bs-stats"><div class="bs-stat"><b>${stats.total}</b><span>monitorati</span></div><div class="bs-stat low"><b>${stats.low}</b><span>in allerta</span></div><div class="bs-stat"><b>${stats.unavailable}</b><span>non disp.</span></div></div>
+        <div class="bs-filters">${filters.map(([key,label,n])=>`<button type="button" class="bs-filter" data-filter="${key}" aria-pressed="${this._filter===key}">${label} (${n})</button>`).join('')}</div>
+        ${list}
+        <p class="bs-note">«N/D» indica che Home Assistant non riesce a leggere il valore dell’entità: non implica che la batteria sia scarica.</p></div></div></div>`;
     }
     _render(){
       if(!this.isConnected)return;
@@ -257,7 +274,7 @@
       const all=sections.flatMap(s=>s.items),stats=summary(all,this._cfg);
       const sig=JSON.stringify({cfg:this._cfg,theme:this._theme(),dialog:this._dialog,filter:this._filter,items:all.map(x=>[x.id,x.name,x.kind,x.value])});
       if(sig===this._signature)return;this._signature=sig;
-      const previousScroll=this.shadowRoot.querySelector('.bs-dialog')?.scrollTop??0;
+      const previousScroll=this.shadowRoot.querySelector('.bs-mbody')?.scrollTop??0;
       this.setAttribute('data-theme',this._theme());
       // "Dispositivi personali" is deliberately excluded from the overall average.
       // It remains visible and still contributes to the alert count.
@@ -265,11 +282,12 @@
       const percentages=sections.filter(s=>s.id!=='smartphone').flatMap(s=>s.items)
         .filter(b=>b.kind==='percentage').map(b=>b.value);
       const mean=percentages.length ? Math.round(percentages.reduce((sum,value)=>sum+value,0)/percentages.length) : null;
+      const alertClass=stats.critical?'critical':stats.low?'low':'';
       this.shadowRoot.innerHTML=`<style>${CARD_CSS}</style><div class="bs-container"><div class="bs-shell">
         <header class="bs-header"><div class="bs-eyebrow">${esc(this._cfg.eyebrow)}</div><div class="bs-title">${esc(this._cfg.title)}<b>.</b></div></header>
         <section class="bs-metrics" aria-label="Riepilogo batterie">
           <div class="bs-metric"><div class="bs-metric-label">Media batterie casa</div><div class="bs-metric-value">${mean===null?'—':mean+'%'}</div><div class="bs-metric-track"><div class="bs-metric-fill" style="width:${mean??0}%"></div></div><div class="bs-metric-detail">Esclusi dispositivi personali · ${percentages.length} sensori</div></div>
-          <div class="bs-metric"><div class="bs-metric-label">Dispositivi in allerta</div><div class="bs-metric-value ${stats.low?'low':''}">${stats.low}</div><div class="bs-metric-detail">Avviso batteria: ${this._cfg.low_threshold}%${this._cfg.show_unavailable&&stats.unavailable?` · ${stats.unavailable} N/D`:''}</div></div>
+          <div class="bs-metric"><div class="bs-metric-label">Dispositivi in allerta</div><div class="bs-metric-value ${alertClass}">${stats.low}</div><div class="bs-metric-detail">Avviso batteria: ${this._cfg.low_threshold}%${this._cfg.show_unavailable&&stats.unavailable?` · ${stats.unavailable} N/D`:''}</div></div>
         </section>
         <div class="bs-heading">Sezioni dispositivi · ${stats.total} monitorati</div>
         ${shown.length?`<div class="bs-grid">${shown.map(s=>{
@@ -283,17 +301,18 @@
           const alertText=st.low?`${st.low} in allerta`:st.unavailable?`${st.unavailable} non disponibil${st.unavailable===1?'e':'i'}`:'';
           const short=`${countText}${alertText?' · '+alertText:''}`;
           const statusName=level==='normal'?'Batterie regolari':level==='low'?'Batterie in allerta':level==='critical'?'Batterie critiche':level==='unavailable'?'Stati non disponibili':'Nessun dispositivo';
-          return `<button class="bs-tile" type="button" data-category="${esc(s.id)}" aria-label="${esc(s.name)}: ${esc(short)}. ${minimum===null?'Percentuale minima non disponibile':'Batteria minima '+Number(minimum.toFixed(1))+'%'}. ${esc(statusName)}. Apri dettagli.">
+          const minText=minimum===null?'Percentuale minima non disponibile':'Batteria minima: '+Number(minimum.toFixed(1))+'%';
+          return `<button class="bs-tile" type="button" data-category="${esc(s.id)}" aria-label="${esc(s.name)}: ${esc(short)}. ${esc(minText)}. ${esc(statusName)}. Apri dettagli.">
             <div class="bs-tilehead"><span class="bs-tile-symbol">${icon(s.icon)}</span><span class="bs-name">${esc(s.name)}</span><span class="bs-tile-state ${level}" title="${esc(statusName)}">${icon(stateIcon)}</span></div>
-            <div class="bs-tile-data"><span class="bs-sub">${esc(countText)}</span><span class="bs-min ${minState}" title="${minimum===null?'Percentuale minima non disponibile':'Batteria minima: '+Number(minimum.toFixed(1))+'%'}">${minimum===null?'—':`<strong>${Number(minimum.toFixed(1))}%</strong>`}</span></div>
-            ${alertText?`<span class="bs-tile-warning ${st.critical?'critical':st.low?'low':''}">${esc(alertText)}</span>`:''}
-            ${minimum!==null?`<div class="bs-mini-track"><div class="bs-mini-fill ${minState}" style="width:${minimum}%"></div></div>`:''}
+            <div class="bs-tile-data"><span class="bs-sub">${esc(countText)}${alertText?`<em class="${st.critical?'critical':st.low?'low':''}">${esc(alertText)}</em>`:''}</span><span class="bs-min ${minState}" title="${esc(minText)}">${minimum===null?'—':Number(minimum.toFixed(1))+'%'}</span></div>
+            <div class="bs-mini-track">${minimum!==null?`<div class="bs-mini-fill ${minState}" style="width:${minimum}%"></div>`:''}</div>
             </button>`;
         }).join('')}</div>`:'<div class="bs-empty">Nessuna sezione visibile: usa l’editor della card per aggiungerla.</div>'}
-        <button class="bs-details" type="button" data-details="1" aria-haspopup="dialog" aria-expanded="${this._dialog==='__all__'}"><span class="bs-details-label">${icon('mdi:format-list-bulleted')} Dettagli batterie</span>${icon('mdi:chevron-right')}</button>
+        <button class="bs-details" type="button" data-details="1" aria-haspopup="dialog" aria-expanded="${this._dialog==='__all__'}"><span class="bs-details-label">${icon('mdi:format-list-bulleted')} Dettagli e stato</span>${icon('mdi:chevron-right')}</button>
       </div></div>${this._dialog?this._popup(sections):''}`;
-      const dialog=this.shadowRoot.querySelector('.bs-dialog');if(dialog)dialog.scrollTop=previousScroll;
-      this._setModalScrollLock(Boolean(dialog));
+      const body=this.shadowRoot.querySelector('.bs-mbody');if(body)body.scrollTop=previousScroll;
+      this._setModalScrollLock(Boolean(body));
+      if(this._pendingFocus){this.shadowRoot.querySelector(this._pendingFocus)?.focus({preventScroll:true});this._pendingFocus='';}
     }
   }
   const EDIT_CSS=`
